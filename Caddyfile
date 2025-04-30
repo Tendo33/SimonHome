@@ -1,5 +1,39 @@
-simonsun.cc {
+:80 {
     root * /var/www/html
     encode zstd gzip
     file_server
+
+    # 安全相关配置
+    header {
+        # 启用 HSTS
+        Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+        # 防止点击劫持
+        X-Frame-Options "SAMEORIGIN"
+        # XSS 保护
+        X-Content-Type-Options "nosniff"
+        # 内容安全策略
+        Content-Security-Policy "default-src 'self'"
+        # 移除服务器信息
+        -Server
+    }
+
+    # 日志配置
+    log {
+        output file /var/log/caddy/access.log
+        format json
+    }
+
+    # 压缩配置
+    encode {
+        gzip
+        zstd
+        br
+    }
+
+    # 缓存控制
+    @static {
+        file
+        path *.css *.js *.jpg *.jpeg *.png *.gif *.ico *.svg *.woff *.woff2
+    }
+    header @static Cache-Control "public, max-age=31536000"
 }
