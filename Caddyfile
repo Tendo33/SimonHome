@@ -1,4 +1,7 @@
-:80 {
+email {CLOUDFLARE_EMAIL}
+acme_dns cloudflare {CLOUDFLARE_TOKEN}
+
+simonsun.cc {
     root * /var/www/html
     encode zstd gzip
     file_server
