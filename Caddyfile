@@ -1,8 +1,10 @@
-email {CLOUDFLARE_EMAIL}
-acme_dns cloudflare {CLOUDFLARE_TOKEN}
+email {env.CLOUDFLARE_EMAIL}
 
 simonsun.cc {
     root * /var/www/html
-    encode zstd gzip
     file_server
+    encode zstd gzip
+    tls {
+        dns cloudflare {env.CLOUDFLARE_TOKEN}
+    }
 }
