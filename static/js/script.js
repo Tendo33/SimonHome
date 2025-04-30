@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     function changeTheme(theme) {
-        tanChiShe.src = "./static/svg/snake-" + theme + ".svg";
+        tanChiShe.src = "https://github.com/Tendo33/Tendo33/blob/output/github-snake" + (theme === "Dark" ? "-dark" : "") + ".svg";
         html.dataset.theme = theme;
         setCookie("themeState", theme, 365);
         themeState = theme;
