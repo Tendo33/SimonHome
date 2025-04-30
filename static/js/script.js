@@ -1,11 +1,6 @@
-console.log('%cCopyright © 2024 zyyo.net',
+console.log('%cCopyright © 2024 simon.net',
     'background-color: #ff00ff; color: white; font-size: 24px; font-weight: bold; padding: 10px;'
 );
-console.log('%c   /\\_/\\', 'color: #8B4513; font-size: 20px;');
-console.log('%c  ( o.o )', 'color: #8B4513; font-size: 20px;');
-console.log(' %c  > ^ <', 'color: #8B4513; font-size: 20px;');
-console.log('  %c /  ~ \\', 'color: #8B4513; font-size: 20px;');
-console.log('  %c/______\\', 'color: #8B4513; font-size: 20px;');
 
 document.addEventListener('contextmenu', function (event) {
     event.preventDefault();
@@ -86,33 +81,12 @@ function getCookie(name) {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 document.addEventListener('DOMContentLoaded', function () {
-
-
-
-
 
 
     var html = document.querySelector('html');
     var themeState = getCookie("themeState") || "Light";
     var tanChiShe = document.getElementById("tanChiShe");
-
-
-
-
 
 
     function changeTheme(theme) {
@@ -121,11 +95,6 @@ document.addEventListener('DOMContentLoaded', function () {
         setCookie("themeState", theme, 365);
         themeState = theme;
     }
-
-
-
-
-
 
 
     var Checkbox = document.getElementById('myonoffswitch')
@@ -147,23 +116,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     changeTheme(themeState);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   
 
     var fpsElement = document.createElement('div');
     fpsElement.id = 'fps';
@@ -205,20 +157,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
         step();
     })();
-    
-    
-    
+
     //pop('./static/img/tz.jpg')
-    
-    
-    
+
+
 });
 
 
 
-
-var pageLoading = document.querySelector("#zyyo-loading");
-window.addEventListener('load', function() {
+var pageLoading = document.querySelector("#simon-loading");
+window.addEventListener('load', function () {
     setTimeout(function () {
         pageLoading.style.opacity = '0';
     }, 100);

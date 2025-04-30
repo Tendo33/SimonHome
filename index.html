@@ -17,14 +17,14 @@
 </head>
 
 <body>
-	<div id="zyyo-loading">
-		<div id="zyyo-loading-center">
+	<div id="simon-loading">
+		<div id="simon-loading-center">
 		</div>
 	</div>
-	<div class="zyyo-filter"></div>
+	<div class="simon-filter"></div>
 
-	<div class="zyyo-main">
-		<div class="zyyo-left">
+	<div class="simon-main">
+		<div class="simon-left">
 			<div class="logo" style="background-image: url(./static/img/logo.png);">
 				<img style="position: absolute;top:-15%;left:-10%;width: 120%; aspect-ratio: 1/1;"
 					src="./static/img/logokuang.png">
@@ -104,7 +104,7 @@
 				</ul>
 			</div>
 		</div>
-		<div class="zyyo-right">
+		<div class="simon-right">
 			<header>
 				<div class="index-logo" style="background-image: url(./static/img/logo.png);">
 					<img style="position: absolute;top:-15%;left:-10%;width: 120%; aspect-ratio: 1/1;"
@@ -112,7 +112,7 @@
 				</div>
 				<div class="welcome">
 					Hello I' m <span class="gradientText">
-						SimonSUN </span>
+						SimonSun </span>
 				</div>
 				<div class="description">👦 <span class="purpleText">LLM</span> Researcher
 				</div>
@@ -171,7 +171,7 @@
 				</div>
 
 				<div class="tanChiShe">
-					<img id="tanChiShe" src="./static/svg/snake-Light.svg" alt="">
+					<img id="tanChiShe" src="https://github.com/Tendo33/Tendo33/blob/output/github-snake.svg" alt="">
 				</div>
 			</header>
 
@@ -305,10 +305,13 @@
 </body>
 <script src="./static/js/script.js"> </script>
 
-
-
-
 <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
-<script>LA.init({ id: "KFqltKSkJgQTGD9l", ck: "KFqltKSkJgQTGD9l" })</script>
+<script>
+	window.addEventListener('load', function () {
+		if (typeof LA !== 'undefined') {
+			LA.init({ id: "KFqltKSkJgQTGD9l", ck: "KFqltKSkJgQTGD9l" });
+		}
+	});
+</script>
 
 </html>
