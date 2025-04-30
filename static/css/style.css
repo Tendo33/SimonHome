@@ -651,12 +651,17 @@ footer {
 	.projectItem:hover h1 {
 		font-size: 20px;
 	}
-
+    .skill img {
+        max-width: 100px; /* 设置最大宽度为200px */
+        max-height: auto; /* 高度自动调整 */
+    }
 	.skill #skillWap {
 		display: block;
 	}
 
 	.skill #skillPc {
+		width: 150px; /* 直接设置宽度为150px */
+        height: auto; /* 高度随宽度自动调整 */
 		display: none;
 	}
 }
