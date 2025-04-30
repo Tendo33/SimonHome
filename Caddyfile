@@ -2,18 +2,4 @@ simonsun.cc {
     root * /var/www/html
     encode zstd gzip
     file_server
-
-    # 日志配置
-    log {
-        output file /var/log/caddy/access.log
-        format json
-    }
-
-
-    # 缓存控制
-    @static {
-        file
-        path *.css *.js *.jpg *.jpeg *.png *.gif *.ico *.svg *.woff *.woff2
-    }
-    header @static Cache-Control "public, max-age=31536000"
 }
