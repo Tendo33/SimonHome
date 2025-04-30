@@ -27,7 +27,6 @@
     encode {
         gzip
         zstd
-        br
     }
 
     # 缓存控制
