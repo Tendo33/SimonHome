@@ -331,6 +331,14 @@ body {
 	}
 }
 
+.neonText {
+	color: #fff;
+	text-shadow: 0 0 5px var(--purple_text_color),
+				0 0 10px var(--purple_text_color),
+				0 0 20px var(--purple_text_color);
+	font-weight: 800;
+}
+
 .purpleText {
 	color: var(--purple_text_color);
 	font-weight: 800;
@@ -558,6 +566,10 @@ body {
 .skill #skillWap {
 	display: none;
 }
+.skill #skillPc {
+	width: 200px; /* 直接设置宽度为150px */
+	height: auto; /* 高度随宽度自动调整 */
+}
 
 footer {
 	position: absolute;
@@ -651,17 +663,13 @@ footer {
 	.projectItem:hover h1 {
 		font-size: 20px;
 	}
-    .skill img {
-        max-width: 100px; /* 设置最大宽度为200px */
-        max-height: auto; /* 高度自动调整 */
-    }
 	.skill #skillWap {
+		width: 200px; /* 直接设置宽度为150px */
+		height: auto; /* 高度随宽度自动调整 */
 		display: block;
 	}
 
 	.skill #skillPc {
-		width: 150px; /* 直接设置宽度为150px */
-        height: auto; /* 高度随宽度自动调整 */
 		display: none;
 	}
 }
