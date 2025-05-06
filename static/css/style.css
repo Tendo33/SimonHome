@@ -567,7 +567,7 @@ body {
 	display: none;
 }
 .skill #skillPc {
-	width: 200px; /* 直接设置宽度为150px */
+	width: 820px; /* 直接设置宽度为150px */
 	height: auto; /* 高度随宽度自动调整 */
 }
 
@@ -664,7 +664,7 @@ footer {
 		font-size: 20px;
 	}
 	.skill #skillWap {
-		width: 200px; /* 直接设置宽度为150px */
+		width: 300px; /* 直接设置宽度为150px */
 		height: auto; /* 高度随宽度自动调整 */
 		display: block;
 	}
