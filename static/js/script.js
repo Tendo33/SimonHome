@@ -35,28 +35,35 @@ function toggleClass(selector, className) {
     });
 }
 
-function pop(imageURL) {
+window.pop = function(imageURL) {
     console.log('pop function called with URL:', imageURL);
+    
+    // 获取弹窗元素
     var tcElement = document.querySelector(".tc");
     var tcMainElement = document.querySelector(".tc-main");
+    
     if (!tcElement || !tcMainElement) {
         console.error('Required elements not found');
         return;
     }
-    // 确保图片元素存在
-    var tcImgElement = tcMainElement.querySelector("img");
+    
+    // 获取或创建图片元素
+    var tcImgElement = tcMainElement.querySelector(".tc-img");
     if (!tcImgElement) {
         console.log('Creating new image element');
         tcImgElement = document.createElement('img');
         tcImgElement.className = 'tc-img';
         tcMainElement.appendChild(tcImgElement);
     }
+    
     console.log('Elements found:', {
         tc: tcElement,
         tcMain: tcMainElement,
         tcImg: tcImgElement
     });
+
     if (imageURL) {
+        // 预加载图片
         var img = new Image();
         img.onload = function() {
             console.log('Image loaded successfully');
@@ -69,11 +76,11 @@ function pop(imageURL) {
         };
         img.src = imageURL;
     } else {
+        // 关闭弹窗
         tcElement.classList.remove("active");
         tcMainElement.classList.remove("active");
     }
-}
-window.pop = pop;
+};
 
 var tc = document.querySelector('.tc');
 var tc_main = document.querySelector('.tc-main');

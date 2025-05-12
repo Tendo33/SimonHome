@@ -296,12 +296,33 @@
 			Blog de Simon🫣 </a>
 	</footer>
 	<div class="tc">
-		<div onclick="" class="tc-main">
-			<img class="tc-img" src="" alt="" srcset="">
+		<div class="tc-main">
+			<img class="tc-img" src="" alt="">
 		</div>
-
 	</div>
 </body>
+<script>
+// 确保 DOM 加载完成后再执行
+document.addEventListener('DOMContentLoaded', function() {
+    // 初始化弹窗事件
+    var tc = document.querySelector('.tc');
+    var tc_main = document.querySelector('.tc-main');
+    
+    if (tc) {
+        tc.addEventListener('click', function(event) {
+            if (event.target === tc) {
+                window.pop();
+            }
+        });
+    }
+    
+    if (tc_main) {
+        tc_main.addEventListener('click', function(event) {
+            event.stopPropagation();
+        });
+    }
+});
+</script>
 <script src="./static/js/script.js"> </script>
 
 <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
