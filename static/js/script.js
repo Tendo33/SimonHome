@@ -36,24 +36,60 @@ function toggleClass(selector, className) {
 }
 
 function pop(imageURL) {
-    var tcMainElement = document.querySelector(".tc-img");
-    if (imageURL) {
-        tcMainElement.src = imageURL;
+    console.log('pop function called with URL:', imageURL);
+    
+    // 获取弹窗元素
+    var tcElement = document.querySelector(".tc");
+    var tcMainElement = document.querySelector(".tc-main");
+    var tcImgElement = document.querySelector(".tc-img");
+    
+    console.log('Elements found:', {
+        tc: tcElement,
+        tcMain: tcMainElement,
+        tcImg: tcImgElement
+    });
+
+    if (!tcElement || !tcMainElement || !tcImgElement) {
+        console.error('Required elements not found');
+        return;
     }
-    toggleClass(".tc-main", "active");
-    toggleClass(".tc", "active");
+
+    if (imageURL) {
+        // 预加载图片
+        var img = new Image();
+        img.onload = function() {
+            console.log('Image loaded successfully');
+            tcImgElement.src = imageURL;
+            tcElement.classList.add("active");
+            tcMainElement.classList.add("active");
+        };
+        img.onerror = function() {
+            console.error('Failed to load image:', imageURL);
+        };
+        img.src = imageURL;
+    } else {
+        // 关闭弹窗
+        tcElement.classList.remove("active");
+        tcMainElement.classList.remove("active");
+    }
 }
 
-var tc = document.getElementsByClassName('tc');
-var tc_main = document.getElementsByClassName('tc-main');
-tc[0].addEventListener('click', function (event) {
-    pop();
-});
-tc_main[0].addEventListener('click', function (event) {
-    event.stopPropagation();
-});
+var tc = document.querySelector('.tc');
+var tc_main = document.querySelector('.tc-main');
 
+if (tc) {
+    tc.addEventListener('click', function(event) {
+        if (event.target === tc) {
+            pop();
+        }
+    });
+}
 
+if (tc_main) {
+    tc_main.addEventListener('click', function(event) {
+        event.stopPropagation();
+    });
+}
 
 function setCookie(name, value, days) {
     var expires = "";
@@ -80,14 +116,11 @@ function getCookie(name) {
     return null;
 }
 
-
 document.addEventListener('DOMContentLoaded', function () {
-
 
     var html = document.querySelector('html');
     var themeState = getCookie("themeState") || "Light";
     var tanChiShe = document.getElementById("tanChiShe");
-
 
     function changeTheme(theme) {
         tanChiShe.src = "https://raw.githubusercontent.com/Tendo33/Tendo33/output/github-snake" + (theme === "Dark" ? "-dark" : "") + ".svg";
@@ -95,7 +128,6 @@ document.addEventListener('DOMContentLoaded', function () {
         setCookie("themeState", theme, 365);
         themeState = theme;
     }
-
 
     var Checkbox = document.getElementById('myonoffswitch')
     Checkbox.addEventListener('change', function () {
@@ -108,14 +140,11 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-
-
     if (themeState == "Dark") {
         Checkbox.checked = false;
     }
 
     changeTheme(themeState);
-
 
     var fpsElement = document.createElement('div');
     fpsElement.id = 'fps';
@@ -160,10 +189,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     //pop('./static/img/tz.jpg')
 
-
 });
-
-
 
 var pageLoading = document.querySelector("#simon-loading");
 window.addEventListener('load', function () {
