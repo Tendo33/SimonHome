@@ -1,5 +1,5 @@
-console.log('%cCopyright © 2024 simon.net',
-    'background-color: #ff00ff; color: white; font-size: 24px; font-weight: bold; padding: 10px;'
+console.log('%cCopyright © 2025 simonsun.cc',
+    'background-color:rgb(6, 113, 245); color: white; font-size: 24px; font-weight: bold; padding: 10px;'
 );
 
 document.addEventListener('contextmenu', function (event) {
@@ -41,7 +41,15 @@ function pop(imageURL) {
     // 获取弹窗元素
     var tcElement = document.querySelector(".tc");
     var tcMainElement = document.querySelector(".tc-main");
-    var tcImgElement = document.querySelector(".tc-main .tc-img");
+    
+    // 确保图片元素存在
+    var tcImgElement = tcMainElement.querySelector("img");
+    if (!tcImgElement) {
+        console.log('Creating new image element');
+        tcImgElement = document.createElement('img');
+        tcImgElement.className = 'tc-img';
+        tcMainElement.appendChild(tcImgElement);
+    }
     
     console.log('Elements found:', {
         tc: tcElement,
@@ -49,7 +57,7 @@ function pop(imageURL) {
         tcImg: tcImgElement
     });
 
-    if (!tcElement || !tcMainElement || !tcImgElement) {
+    if (!tcElement || !tcMainElement) {
         console.error('Required elements not found');
         return;
     }
