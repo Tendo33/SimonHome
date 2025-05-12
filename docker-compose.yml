@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  web:
+    image: simonsun3/simonhome
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./:/var/www/html
+      - ./Caddyfile:/etc/caddy/Caddyfile
+    restart: unless-stopped 
