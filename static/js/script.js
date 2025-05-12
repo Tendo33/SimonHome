@@ -41,7 +41,7 @@ function pop(imageURL) {
     // 获取弹窗元素
     var tcElement = document.querySelector(".tc");
     var tcMainElement = document.querySelector(".tc-main");
-    var tcImgElement = document.querySelector(".tc-img");
+    var tcImgElement = document.querySelector(".tc-main .tc-img");
     
     console.log('Elements found:', {
         tc: tcElement,
