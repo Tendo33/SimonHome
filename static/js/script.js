@@ -38,39 +38,46 @@ function toggleClass(selector, className) {
 window.pop = function(imageURL) {
     console.log('pop function called with URL:', imageURL);
     
-    // 获取弹窗元素
+    // 确保 tc 元素存在
     var tcElement = document.querySelector(".tc");
-    var tcMainElement = document.querySelector(".tc-main");
-    
-    // 如果元素不存在，尝试创建它们
     if (!tcElement) {
-        console.log('Creating tc element');
         tcElement = document.createElement('div');
         tcElement.className = 'tc';
         document.body.appendChild(tcElement);
     }
     
+    // 确保 tc-main 元素存在
+    var tcMainElement = document.querySelector(".tc-main");
     if (!tcMainElement) {
-        console.log('Creating tc-main element');
         tcMainElement = document.createElement('div');
         tcMainElement.className = 'tc-main';
         tcElement.appendChild(tcMainElement);
     }
     
-    // 获取或创建图片元素
+    // 确保 tc-img 元素存在
     var tcImgElement = tcMainElement.querySelector(".tc-img");
     if (!tcImgElement) {
-        console.log('Creating tc-img element');
         tcImgElement = document.createElement('img');
         tcImgElement.className = 'tc-img';
         tcMainElement.appendChild(tcImgElement);
     }
-    
-    console.log('Elements found/created:', {
-        tc: tcElement,
-        tcMain: tcMainElement,
-        tcImg: tcImgElement
-    });
+
+    // 添加点击事件监听器
+    if (!tcElement.hasEventListener) {
+        tcElement.addEventListener('click', function(event) {
+            if (event.target === tcElement) {
+                pop();
+            }
+        });
+        tcElement.hasEventListener = true;
+    }
+
+    if (!tcMainElement.hasEventListener) {
+        tcMainElement.addEventListener('click', function(event) {
+            event.stopPropagation();
+        });
+        tcMainElement.hasEventListener = true;
+    }
 
     if (imageURL) {
         // 预加载图片
