@@ -42,21 +42,31 @@ window.pop = function(imageURL) {
     var tcElement = document.querySelector(".tc");
     var tcMainElement = document.querySelector(".tc-main");
     
-    if (!tcElement || !tcMainElement) {
-        console.error('Required elements not found');
-        return;
+    // 如果元素不存在，尝试创建它们
+    if (!tcElement) {
+        console.log('Creating tc element');
+        tcElement = document.createElement('div');
+        tcElement.className = 'tc';
+        document.body.appendChild(tcElement);
+    }
+    
+    if (!tcMainElement) {
+        console.log('Creating tc-main element');
+        tcMainElement = document.createElement('div');
+        tcMainElement.className = 'tc-main';
+        tcElement.appendChild(tcMainElement);
     }
     
     // 获取或创建图片元素
     var tcImgElement = tcMainElement.querySelector(".tc-img");
     if (!tcImgElement) {
-        console.log('Creating new image element');
+        console.log('Creating tc-img element');
         tcImgElement = document.createElement('img');
         tcImgElement.className = 'tc-img';
         tcMainElement.appendChild(tcImgElement);
     }
     
-    console.log('Elements found:', {
+    console.log('Elements found/created:', {
         tc: tcElement,
         tcMain: tcMainElement,
         tcImg: tcImgElement
@@ -73,6 +83,7 @@ window.pop = function(imageURL) {
         };
         img.onerror = function() {
             console.error('Failed to load image:', imageURL);
+            alert('图片加载失败，请检查图片路径是否正确');
         };
         img.src = imageURL;
     } else {
