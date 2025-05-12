@@ -1,9 +1,6 @@
-version: '3.8'
-
 services:
   web:
     image: simonsun3/simonhome
     ports:
-      - "8080:80"
-      - "8443:443"
+      - "8443:80"
     restart: unless-stopped 
