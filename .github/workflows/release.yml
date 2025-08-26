@@ -3,7 +3,7 @@ name: Release and Docker Build
 on:
   push:
     tags:
-      - 'v*'
+      - "v*"
 
 # 添加权限设置
 permissions:
@@ -61,4 +61,4 @@ jobs:
           context: .
           push: true
           tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }} 
+          labels: ${{ steps.meta.outputs.labels }}

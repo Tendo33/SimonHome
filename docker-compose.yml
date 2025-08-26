@@ -3,4 +3,4 @@ services:
     image: simonsun3/simonhome
     ports:
       - "8443:80"
-    restart: unless-stopped 
+    restart: unless-stopped

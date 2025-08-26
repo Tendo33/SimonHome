@@ -53,4 +53,4 @@ MIT License
 
 ## 🙏 致谢
 
-特别感谢 [ZYYO666](https://github.com/ZYYO666) 提供的优秀开源项目！ 
+特别感谢 [ZYYO666](https://github.com/ZYYO666) 提供的优秀开源项目！
