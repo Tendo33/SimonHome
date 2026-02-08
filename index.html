@@ -29,11 +29,49 @@
 	<link rel="preconnect" href="https://raw.githubusercontent.com" crossorigin />
 	<link rel="dns-prefetch" href="//sdk.51.la" />
 
+	<!-- Prevent theme flash: apply saved theme before first paint -->
+	<script>
+		(function() {
+			var t;
+			try { t = localStorage.getItem("themeState"); } catch(e) {}
+			if (!t && window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) t = "Dark";
+			if (t === "Dark") document.documentElement.setAttribute("data-theme", "Dark");
+		})();
+	</script>
+
+	<!-- Preload critical assets -->
+	<link rel="preload" href="./static/fonts/Ubuntu-Regular.ttf" as="font" type="font/ttf" crossorigin />
+	<link rel="preload" href="./static/fonts/Pacifico-Regular.ttf" as="font" type="font/ttf" crossorigin />
+	<link rel="preload" href="./static/img/background.png" as="image" />
+
+	<!-- Canonical URL -->
+	<link rel="canonical" href="https://simonsun.cc/" />
+
+	<!-- Structured Data -->
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "Person",
+		"name": "SimonSun",
+		"url": "https://simonsun.cc",
+		"jobTitle": "LLM Engineer",
+		"sameAs": [
+			"https://github.com/Tendo33"
+		],
+		"address": {
+			"@type": "PostalAddress",
+			"addressLocality": "Beijing",
+			"addressCountry": "CN"
+		}
+	}
+	</script>
+
 	<link rel="stylesheet" href="./static/css/style.css" />
 	<link rel="stylesheet" href="./static/css/root.css" />
 </head>
 
 <body>
+	<a href="#main-content" class="skip-link">Skip to main content</a>
 	<noscript>
 		<style>#simon-loading { display: none !important; }</style>
 		<div class="noscript-warning">This site works best with JavaScript enabled.</div>
@@ -142,7 +180,7 @@
 				</ul>
 			</div>
 		</aside>
-		<main class="simon-right">
+		<main id="main-content" class="simon-right">
 			<header>
 				<div class="index-logo" role="img" aria-label="SimonSun's avatar" style="background-image: url(./static/img/logo.png)"></div>
 			<h1 class="welcome">
@@ -329,7 +367,7 @@
 		</main>
 	</div>
 	<footer>
-		SimonSun &copy; 2025 |
+		SimonSun &copy; <span id="copyright-year">2025</span> |
 		<a href="https://simonsun.cc/" rel="noopener noreferrer"> Simon's Home🐶 </a>
 	</footer>
 	<div class="tc" role="dialog" aria-modal="true" aria-label="Image preview">

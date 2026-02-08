@@ -194,6 +194,12 @@ document.addEventListener("DOMContentLoaded", function () {
   changeTheme(themeState);
 });
 
+/* ===== Dynamic Copyright Year ===== */
+var yearEl = document.getElementById("copyright-year");
+if (yearEl) {
+  yearEl.textContent = new Date().getFullYear();
+}
+
 /* ===== Loading Screen ===== */
 var pageLoading = document.querySelector("#simon-loading");
 window.addEventListener("load", function () {
