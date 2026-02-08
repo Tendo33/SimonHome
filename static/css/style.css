@@ -1,12 +1,12 @@
 /* ===== Font Faces ===== */
 @font-face {
-  font-family: "b";
+  font-family: "Ubuntu";
   src: url(../fonts/Ubuntu-Regular.ttf);
   font-display: swap;
 }
 
 @font-face {
-  font-family: "title";
+  font-family: "Pacifico";
   src: url(../fonts/Pacifico-Regular.ttf);
   font-display: swap;
 }
@@ -37,6 +37,10 @@ input:focus-visible {
 }
 
 /* ===== Scrollbar ===== */
+* {
+  scrollbar-width: none; /* Firefox */
+}
+
 ::-webkit-scrollbar {
   width: 0px;
 }
@@ -53,11 +57,10 @@ input:focus-visible {
 
 /* ===== Body ===== */
 body {
-  height: 100%;
   min-height: 100vh;
   width: 100%;
   position: relative;
-  font-family: "b", sans-serif;
+  font-family: "Ubuntu", sans-serif;
   background: var(--main-bg-color);
   background-repeat: no-repeat;
   background-size: cover;
@@ -140,7 +143,7 @@ body {
 
 /* ===== Left Sidebar ===== */
 .simon-left {
-  overflow-y: scroll;
+  overflow-y: auto;
   width: 230px;
   height: 100vh;
   display: flex;
@@ -312,7 +315,7 @@ body {
   -webkit-text-fill-color: transparent;
   background-size: 200%;
   background-position: 0%;
-  font-family: "title";
+  font-family: "Pacifico", cursive;
   animation: backgroundSizeAnimation 10s ease-in-out infinite;
   background-image: var(--gradient);
 }

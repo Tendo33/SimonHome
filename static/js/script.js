@@ -4,7 +4,7 @@
  */
 
 console.log(
-  "%cCopyright © 2025 simonsun.cc",
+  "%cCopyright \u00A9 " + new Date().getFullYear() + " simonsun.cc",
   "background-color:rgb(6, 113, 245); color: white; font-size: 24px; font-weight: bold; padding: 10px;"
 );
 
@@ -63,22 +63,28 @@ buttons.forEach(function (button) {
     tcMainElement.classList.remove("active");
   }
 
-  window.pop = function (imageURL) {
-    if (imageURL) {
-      var img = new Image();
-      img.onload = function () {
-        tcImgElement.src = imageURL;
-        tcElement.classList.add("active");
-        tcMainElement.classList.add("active");
-      };
-      img.onerror = function () {
-        console.error("Failed to load image:", imageURL);
-      };
-      img.src = imageURL;
-    } else {
-      closePopup();
+  function openPopup(imageURL) {
+    if (!imageURL) return;
+    var img = new Image();
+    img.onload = function () {
+      tcImgElement.src = imageURL;
+      tcElement.classList.add("active");
+      tcMainElement.classList.add("active");
+    };
+    img.onerror = function () {
+      console.error("Failed to load image:", imageURL);
+    };
+    img.src = imageURL;
+  }
+
+  // Event delegation: any element with data-popup triggers the popup
+  document.addEventListener("click", function (event) {
+    var trigger = event.target.closest("[data-popup]");
+    if (trigger) {
+      event.preventDefault();
+      openPopup(trigger.getAttribute("data-popup"));
     }
-  };
+  });
 })();
 
 /* ===== Theme Storage (localStorage) ===== */

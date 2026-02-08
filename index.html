@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-CN" class="simonsun.cc">
+<html lang="zh-CN">
 
 <head>
 	<meta charset="utf-8" />
@@ -209,7 +209,7 @@
 								d="M926.47619 355.644952V780.190476a73.142857 73.142857 0 0 1-73.142857 73.142857H170.666667a73.142857 73.142857 0 0 1-73.142857-73.142857V355.644952l304.103619 257.828572a170.666667 170.666667 0 0 0 220.745142 0L926.47619 355.644952zM853.333333 170.666667a74.044952 74.044952 0 0 1 26.087619 4.778666 72.704 72.704 0 0 1 30.622477 22.186667 73.508571 73.508571 0 0 1 10.678857 17.67619c3.169524 7.509333 5.12 15.652571 5.607619 24.210286L926.47619 243.809524v24.380952L559.469714 581.241905a73.142857 73.142857 0 0 1-91.306666 2.901333l-3.632762-2.925714L97.52381 268.190476v-24.380952a72.899048 72.899048 0 0 1 40.155428-65.292191A72.97219 72.97219 0 0 1 170.666667 170.666667h682.666666z"></path>
 						</svg>
 						<div class="iconTip">Mail</div>
-					</a><a class="iconItem" onclick="pop('/static/img/wxzsm.jpg')" href="javascript:void(0)" aria-label="Sponsor via WeChat">
+					</a><a class="iconItem" data-popup="/static/img/wxzsm.jpg" href="javascript:void(0)" aria-label="Sponsor via WeChat">
 						<svg aria-hidden="true" viewBox="0 0 1024 1024" version="1.1"
 							xmlns="http://www.w3.org/2000/svg">
 							<path
@@ -220,7 +220,7 @@
 								d="M683.431724 427.431724v-70.62069h-38.311724l30.190345-30.190344-49.964138-49.964138-62.49931 62.49931h-6.002759L494.344828 276.656552l-49.787587 49.964138 30.013793 30.190344h-38.311724v70.62069h88.275862v35.310345h-88.275862v70.62069h88.275862v52.965517h70.62069v-52.965517h88.275862v-70.62069h-88.275862v-35.310345z"></path>
 						</svg>
 						<div class="iconTip">赞助</div>
-					</a><a class="iconItem" onclick="pop('/static/img/qq.jpg')" href="javascript:void(0)" aria-label="QQ contact">
+					</a><a class="iconItem" data-popup="/static/img/qq.jpg" href="javascript:void(0)" aria-label="QQ contact">
 						<svg aria-hidden="true" viewBox="0 0 1024 1024" version="1.1"
 							xmlns="http://www.w3.org/2000/svg">
 							<path
@@ -372,18 +372,24 @@
 	</footer>
 	<div class="tc" role="dialog" aria-modal="true" aria-label="Image preview">
 		<div class="tc-main">
-			<img class="tc-img" src="" alt="Preview image" />
+			<img class="tc-img" alt="Preview image" />
 		</div>
 	</div>
 	<script src="./static/js/script.js"></script>
 
-	<script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js" async></script>
 	<script>
-		window.addEventListener("load", function () {
-			if (typeof LA !== "undefined") {
-				LA.init({ id: "KFqltKSkJgQTGD9l", ck: "KFqltKSkJgQTGD9l" });
-			}
-		});
+		(function() {
+			var s = document.createElement("script");
+			s.charset = "UTF-8";
+			s.src = "//sdk.51.la/js-sdk-pro.min.js";
+			s.async = true;
+			s.onload = function() {
+				if (typeof LA !== "undefined") {
+					LA.init({ id: "KFqltKSkJgQTGD9l", ck: "KFqltKSkJgQTGD9l" });
+				}
+			};
+			document.body.appendChild(s);
+		})();
 	</script>
 </body>
 
