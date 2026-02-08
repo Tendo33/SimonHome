@@ -1,13 +1,13 @@
 /* ===== Font Faces ===== */
 @font-face {
   font-family: "Ubuntu";
-  src: url(../fonts/Ubuntu-Regular.ttf);
+  src: url(../fonts/Ubuntu-Regular.ttf) format("truetype");
   font-display: swap;
 }
 
 @font-face {
   font-family: "Pacifico";
-  src: url(../fonts/Pacifico-Regular.ttf);
+  src: url(../fonts/Pacifico-Regular.ttf) format("truetype");
   font-display: swap;
 }
 
@@ -674,13 +674,13 @@ footer {
 
 /* ===== Responsive: Tablet ===== */
 @media (max-width: 1150px) {
-  .a {
+  .site-card {
     width: calc(50% - 20px);
   }
   .projectItem {
     margin: 10px;
   }
-  .b {
+  .project-card {
     width: calc(50% - 20px);
   }
 }
@@ -716,24 +716,24 @@ footer {
     transform: translateX(0);
   }
 
-  .a .projectItemRight {
+  .site-card .projectItemRight {
     display: none;
   }
 
-  .a .projectItemRight img {
+  .site-card .projectItemRight img {
     display: none;
   }
 
-  .a .projectItemLeft {
+  .site-card .projectItemLeft {
     width: 100%;
   }
 
-  .a {
+  .site-card {
     width: calc(50% - 18px);
     margin: 9px;
   }
 
-  .b {
+  .project-card {
     height: 110px;
     margin: 8px 15px;
     width: calc(100% - 30px);
@@ -788,6 +788,7 @@ footer {
   position: fixed;
   display: flex;
   visibility: hidden;
+  opacity: 0;
   width: 100vw;
   height: 100vh;
   backdrop-filter: blur(10px);
@@ -798,6 +799,7 @@ footer {
   top: 0;
   justify-content: center;
   flex-direction: column;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
 }
 
 .tc-main {
@@ -808,7 +810,7 @@ footer {
   background-color: #ffffff;
   border-radius: 15px;
   display: flex;
-  transition: transform 0.2s linear;
+  transition: transform 0.25s ease;
   align-items: center;
   justify-content: center;
   overflow: hidden;
@@ -822,6 +824,7 @@ footer {
 
 .tc.active {
   visibility: visible;
+  opacity: 1;
 }
 
 .tc-main.active {

@@ -8,28 +8,39 @@ console.log(
   "background-color:rgb(6, 113, 245); color: white; font-size: 24px; font-weight: bold; padding: 10px;"
 );
 
-/* ===== Project Card Press Effect ===== */
-var buttons = document.querySelectorAll(".projectItem");
-buttons.forEach(function (button) {
-  button.addEventListener("mousedown", function () {
-    this.classList.add("pressed");
+/* ===== Project Card Press Effect (Event Delegation) ===== */
+(function () {
+  var lists = document.querySelectorAll(".projectList");
+  lists.forEach(function (list) {
+    function getCard(event) {
+      return event.target.closest(".projectItem");
+    }
+    list.addEventListener("mousedown", function (e) {
+      var card = getCard(e);
+      if (card) card.classList.add("pressed");
+    });
+    list.addEventListener("mouseup", function (e) {
+      var card = getCard(e);
+      if (card) card.classList.remove("pressed");
+    });
+    list.addEventListener("mouseleave", function () {
+      var active = list.querySelector(".projectItem.pressed");
+      if (active) active.classList.remove("pressed");
+    });
+    list.addEventListener("touchstart", function (e) {
+      var card = getCard(e);
+      if (card) card.classList.add("pressed");
+    }, { passive: true });
+    list.addEventListener("touchend", function (e) {
+      var card = getCard(e);
+      if (card) card.classList.remove("pressed");
+    });
+    list.addEventListener("touchcancel", function (e) {
+      var card = getCard(e);
+      if (card) card.classList.remove("pressed");
+    });
   });
-  button.addEventListener("mouseup", function () {
-    this.classList.remove("pressed");
-  });
-  button.addEventListener("mouseleave", function () {
-    this.classList.remove("pressed");
-  });
-  button.addEventListener("touchstart", function () {
-    this.classList.add("pressed");
-  }, { passive: true });
-  button.addEventListener("touchend", function () {
-    this.classList.remove("pressed");
-  });
-  button.addEventListener("touchcancel", function () {
-    this.classList.remove("pressed");
-  });
-});
+})();
 
 /* ===== Image Popup ===== */
 (function () {
@@ -58,18 +69,29 @@ buttons.forEach(function (button) {
     }
   });
 
+  var previouslyFocused = null;
+
   function closePopup() {
     tcElement.classList.remove("active");
     tcMainElement.classList.remove("active");
+    // Restore focus to the element that triggered the popup
+    if (previouslyFocused) {
+      previouslyFocused.focus();
+      previouslyFocused = null;
+    }
   }
 
-  function openPopup(imageURL) {
+  function openPopup(imageURL, triggerEl) {
     if (!imageURL) return;
+    previouslyFocused = triggerEl || document.activeElement;
     var img = new Image();
     img.onload = function () {
       tcImgElement.src = imageURL;
       tcElement.classList.add("active");
       tcMainElement.classList.add("active");
+      // Move focus into the dialog
+      tcElement.setAttribute("tabindex", "-1");
+      tcElement.focus();
     };
     img.onerror = function () {
       console.error("Failed to load image:", imageURL);
@@ -77,12 +99,20 @@ buttons.forEach(function (button) {
     img.src = imageURL;
   }
 
+  // Trap focus inside popup when Tab is pressed
+  tcElement.addEventListener("keydown", function (event) {
+    if (event.key === "Tab") {
+      // Since the popup has no focusable children, keep focus on the overlay
+      event.preventDefault();
+    }
+  });
+
   // Event delegation: any element with data-popup triggers the popup
   document.addEventListener("click", function (event) {
     var trigger = event.target.closest("[data-popup]");
     if (trigger) {
       event.preventDefault();
-      openPopup(trigger.getAttribute("data-popup"));
+      openPopup(trigger.getAttribute("data-popup"), trigger);
     }
   });
 })();

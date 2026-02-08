@@ -9,8 +9,9 @@
 	<meta name="description" content="SimonSun's Personal Homepage - LLM Engineer, Open Source Enthusiast" />
 	<meta name="keywords" content="SimonSun,Simon,Jinfeng,LLM,blog,Simon主页,SimonSun引导页" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<meta name="theme-color" content="#0a0a0f" />
+	<meta name="theme-color" content="#4a7dbd" />
 	<meta name="robots" content="index, follow" />
+	<meta name="author" content="SimonSun" />
 
 	<!-- Open Graph -->
 	<meta property="og:title" content="SimonHome - SimonSun's Personal Homepage" />
@@ -36,7 +37,11 @@
 			var t;
 			try { t = localStorage.getItem("themeState"); } catch(e) {}
 			if (!t && window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) t = "Dark";
-			if (t === "Dark") document.documentElement.setAttribute("data-theme", "Dark");
+			if (t === "Dark") {
+				document.documentElement.setAttribute("data-theme", "Dark");
+				var m = document.querySelector('meta[name="theme-color"]');
+				if (m) m.setAttribute("content", "#0a0a0f");
+			}
 		})();
 	</script>
 
@@ -114,7 +119,7 @@
 			</div>
 			<nav class="left-div left-tag" aria-label="Personal tags">
 				<div class="left-tag-item">靠 LLM 吃饭🤖</div>
-				<div class="left-tag-item">热爱开源💻</div>
+				<div class="left-tag-item">热爱开源��</div>
 				<div class="left-tag-item">钟爱炫酷的前端UI🎨</div>
 				<div class="left-tag-item">Docker 应用爱好者🐳</div>
 				<div class="left-tag-item">喜欢捣鼓插件🔧</div>
@@ -257,7 +262,7 @@
 					Site
 				</div>
 				<div class="projectList">
-					<a class="projectItem a" target="_blank" rel="noopener noreferrer" href="https://simonsun.xyz/">
+					<a class="projectItem site-card" target="_blank" rel="noopener noreferrer" href="https://simonsun.xyz/">
 						<div class="projectItemLeft">
 							<h3>Blog de Simon</h3>
 							<p>欢迎来到我的博客👨‍💻</p>
@@ -267,7 +272,7 @@
 						</div>
 					</a>
 
-					<a class="projectItem a" target="_blank" rel="noopener noreferrer" href="https://sun.simonsun.cc/">
+					<a class="projectItem site-card" target="_blank" rel="noopener noreferrer" href="https://sun.simonsun.cc/">
 						<div class="projectItemLeft">
 							<h3>Simon's Apps</h3>
 							<p>自部署的好玩的应用🎮</p>
@@ -277,7 +282,7 @@
 						</div>
 					</a>
 
-					<a class="projectItem a" target="_blank" rel="noopener noreferrer" href="https://moodshaker.de/cn">
+					<a class="projectItem site-card" target="_blank" rel="noopener noreferrer" href="https://moodshaker.de/cn">
 						<div class="projectItemLeft">
 							<h3>MoodShaker</h3>
 							<p>AI 心情鸡尾酒🍹</p>
@@ -287,7 +292,7 @@
 						</div>
 					</a>
 
-					<a class="projectItem a" target="_blank" rel="noopener noreferrer" href="https://moodist.simonsun.cc/">
+					<a class="projectItem site-card" target="_blank" rel="noopener noreferrer" href="https://moodist.simonsun.cc/">
 						<div class="projectItemLeft">
 							<h3>Moodist</h3>
 							<p>可以融合的白噪声🎧</p>
@@ -308,7 +313,7 @@
 					</svg>Projects
 				</div>
 				<div class="projectList">
-					<a class="projectItem b" target="_blank" rel="noopener noreferrer" href="https://github.com/Tendo33/markio">
+					<a class="projectItem project-card" target="_blank" rel="noopener noreferrer" href="https://github.com/Tendo33/markio">
 						<div class="projectItemLeft">
 							<h3>Markio</h3>
 							<p>多种文件格式转换为Markdown的API🔥</p>
@@ -316,7 +321,7 @@
 						<div class="projectItemRight">
 							<img src="./static/img/i5.png" alt="Markio icon" loading="lazy" />
 						</div>
-					</a><a class="projectItem b" target="_blank" rel="noopener noreferrer" href="https://github.com/Tendo33/SimonHome">
+					</a><a class="projectItem project-card" target="_blank" rel="noopener noreferrer" href="https://github.com/Tendo33/SimonHome">
 						<div class="projectItemLeft">
 							<h3>SimonHome</h3>
 							<p>同款主页🏠</p>
@@ -325,7 +330,7 @@
 							<img src="./static/img/i6.png" alt="SimonHome icon" loading="lazy" />
 						</div>
 					</a>
-					<a class="projectItem b" target="_blank" rel="noopener noreferrer" href="https://github.com/Tendo33/data-tagger">
+					<a class="projectItem project-card" target="_blank" rel="noopener noreferrer" href="https://github.com/Tendo33/data-tagger">
 						<div class="projectItemLeft">
 							<h3>data-tagger</h3>
 							<p>SFT数据标注工具🔧</p>
@@ -333,7 +338,7 @@
 						<div class="projectItemRight">
 							<img src="./static/img/i7.png" alt="Data-tagger icon" loading="lazy" />
 						</div>
-					</a><a class="projectItem b" target="_blank" rel="noopener noreferrer" href="https://github.com/Tendo33/MoodShakerFront">
+					</a><a class="projectItem project-card" target="_blank" rel="noopener noreferrer" href="https://github.com/Tendo33/MoodShakerFront">
 						<div class="projectItemLeft">
 							<h3>MoodShakerFront</h3>
 							<p>AI 心情鸡尾酒🍹</p>
