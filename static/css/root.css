@@ -4,7 +4,8 @@
   Light theme: blurred background + dark translucent cards + white text/SVG
   Dark theme:  solid dark background + dark cards + white text/SVG
 
-  Variable naming uses kebab-case for consistency.
+  All CSS variables use kebab-case for consistency.
+  These are the single source of truth for theming.
 */
 
 /* ===== Light Theme (default) ===== */
@@ -35,7 +36,7 @@
 }
 
 /* ===== Dark Theme ===== */
-[data-theme="dark"] {
+html[data-theme="Dark"] {
   --svg-color: #ffffff;
   --main-bg-color: #0a0a0f;
   --main-text-color: #e8e8e8;
