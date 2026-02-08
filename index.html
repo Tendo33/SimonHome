@@ -27,12 +27,17 @@
 	<!-- Preconnect external domains -->
 	<link rel="preconnect" href="https://skillicons.dev" crossorigin />
 	<link rel="preconnect" href="https://raw.githubusercontent.com" crossorigin />
+	<link rel="dns-prefetch" href="//sdk.51.la" />
 
 	<link rel="stylesheet" href="./static/css/style.css" />
 	<link rel="stylesheet" href="./static/css/root.css" />
 </head>
 
 <body>
+	<noscript>
+		<style>#simon-loading { display: none !important; }</style>
+		<div class="noscript-warning">This site works best with JavaScript enabled.</div>
+	</noscript>
 	<div id="simon-loading" role="status" aria-label="Loading">
 		<div id="simon-loading-center"></div>
 	</div>
@@ -140,9 +145,9 @@
 		<main class="simon-right">
 			<header>
 				<div class="index-logo" role="img" aria-label="SimonSun's avatar" style="background-image: url(./static/img/logo.png)"></div>
-				<div class="welcome">
-					Hello I'm <span class="gradientText"> SimonSun </span>
-				</div>
+			<h1 class="welcome">
+				Hello I'm <span class="gradientText"> SimonSun </span>
+			</h1>
 				<div class="description">
 					👦 <span class="neonText textBackground">LLM</span> Engineer
 				</div>
@@ -198,7 +203,7 @@
 				</div>
 
 				<div class="tanChiShe">
-					<img id="tanChiShe" src="https://github.com/Tendo33/Tendo33/blob/output/github-snake.svg" alt="GitHub contribution snake animation" loading="lazy" />
+					<img id="tanChiShe" src="https://raw.githubusercontent.com/Tendo33/Tendo33/output/github-snake.svg" alt="GitHub contribution snake animation" loading="lazy" />
 				</div>
 			</header>
 
@@ -215,7 +220,7 @@
 				<div class="projectList">
 					<a class="projectItem a" target="_blank" rel="noopener noreferrer" href="https://simonsun.xyz/">
 						<div class="projectItemLeft">
-							<h1>Blog de Simon</h1>
+							<h3>Blog de Simon</h3>
 							<p>欢迎来到我的博客👨‍💻</p>
 						</div>
 						<div class="projectItemRight">
@@ -225,7 +230,7 @@
 
 					<a class="projectItem a" target="_blank" rel="noopener noreferrer" href="https://sun.simonsun.cc/">
 						<div class="projectItemLeft">
-							<h1>Simon's Apps</h1>
+							<h3>Simon's Apps</h3>
 							<p>自部署的好玩的应用🎮</p>
 						</div>
 						<div class="projectItemRight">
@@ -235,7 +240,7 @@
 
 					<a class="projectItem a" target="_blank" rel="noopener noreferrer" href="https://moodshaker.de/cn">
 						<div class="projectItemLeft">
-							<h1>MoodShaker</h1>
+							<h3>MoodShaker</h3>
 							<p>AI 心情鸡尾酒🍹</p>
 						</div>
 						<div class="projectItemRight">
@@ -245,7 +250,7 @@
 
 					<a class="projectItem a" target="_blank" rel="noopener noreferrer" href="https://moodist.simonsun.cc/">
 						<div class="projectItemLeft">
-							<h1>Moodist</h1>
+							<h3>Moodist</h3>
 							<p>可以融合的白噪声🎧</p>
 						</div>
 						<div class="projectItemRight">
@@ -266,7 +271,7 @@
 				<div class="projectList">
 					<a class="projectItem b" target="_blank" rel="noopener noreferrer" href="https://github.com/Tendo33/markio">
 						<div class="projectItemLeft">
-							<h1>Markio</h1>
+							<h3>Markio</h3>
 							<p>多种文件格式转换为Markdown的API🔥</p>
 						</div>
 						<div class="projectItemRight">
@@ -274,7 +279,7 @@
 						</div>
 					</a><a class="projectItem b" target="_blank" rel="noopener noreferrer" href="https://github.com/Tendo33/SimonHome">
 						<div class="projectItemLeft">
-							<h1>SimonHome</h1>
+							<h3>SimonHome</h3>
 							<p>同款主页🏠</p>
 						</div>
 						<div class="projectItemRight">
@@ -283,7 +288,7 @@
 					</a>
 					<a class="projectItem b" target="_blank" rel="noopener noreferrer" href="https://github.com/Tendo33/data-tagger">
 						<div class="projectItemLeft">
-							<h1>data-tagger</h1>
+							<h3>data-tagger</h3>
 							<p>SFT数据标注工具🔧</p>
 						</div>
 						<div class="projectItemRight">
@@ -291,7 +296,7 @@
 						</div>
 					</a><a class="projectItem b" target="_blank" rel="noopener noreferrer" href="https://github.com/Tendo33/MoodShakerFront">
 						<div class="projectItemLeft">
-							<h1>MoodShakerFront</h1>
+							<h3>MoodShakerFront</h3>
 							<p>AI 心情鸡尾酒🍹</p>
 						</div>
 						<div class="projectItemRight">
@@ -334,7 +339,7 @@
 	</div>
 	<script src="./static/js/script.js"></script>
 
-	<script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+	<script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js" async></script>
 	<script>
 		window.addEventListener("load", function () {
 			if (typeof LA !== "undefined") {

@@ -16,19 +16,24 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  transition: background-color 0.2s ease;
 }
 
 a:hover,
 a:link,
 a:visited,
-a:active,
-a:focus {
+a:active {
   text-decoration: none;
-  outline: none;
   border: none;
   color: inherit;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+/* Keyboard focus indicator - visible only for keyboard navigation */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--purple-text-color, #747bff);
+  outline-offset: 2px;
+  border-radius: 4px;
 }
 
 /* ===== Scrollbar ===== */
@@ -58,8 +63,15 @@ body {
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-  transition: color 0.1s ease;
   color: var(--main-text-color);
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+/* Disable fixed bg on touch devices (causes severe jank) */
+@supports (-webkit-touch-callout: none) {
+  body {
+    background-attachment: scroll;
+  }
 }
 
 /* ===== Loading Screen ===== */
@@ -70,7 +82,7 @@ body {
   height: 100%;
   width: 100%;
   position: fixed;
-  z-index: 999999;
+  z-index: 100000;
   margin-top: 0px;
   top: 0px;
   pointer-events: none;
@@ -112,7 +124,7 @@ body {
   background: var(--back-filter-color);
   backdrop-filter: blur(var(--back-filter));
   -webkit-backdrop-filter: blur(var(--back-filter));
-  z-index: -99999999;
+  z-index: -1;
 }
 
 /* ===== Layout ===== */
@@ -215,7 +227,7 @@ body {
   height: 200px;
   font-size: 13px;
   padding-left: 8px;
-  scroll-snap-type: y mandatory;
+  scroll-snap-type: y proximity;
   overflow-y: scroll;
 }
 
@@ -505,7 +517,7 @@ body {
   transform: rotate(40deg);
 }
 
-.projectItem:hover h1 {
+.projectItem:hover h3 {
   font-size: 18px;
 }
 
@@ -515,7 +527,7 @@ body {
   color: var(--item-left-text-color);
 }
 
-.projectItemLeft h1 {
+.projectItemLeft h3 {
   font-weight: normal;
   font-size: 16px;
   margin: 0px;
@@ -567,7 +579,6 @@ body {
 
 /* ===== Footer ===== */
 footer {
-  position: absolute;
   padding: 10px;
   text-align: center;
   width: 100%;
@@ -576,7 +587,6 @@ footer {
   background: var(--item-bg-color);
   color: var(--footer-text-color);
   font-size: 13px;
-  bottom: 0;
 }
 
 /* ===== Mobile Menu Button ===== */
@@ -756,11 +766,11 @@ footer {
     font-size: 13px;
   }
 
-  .projectItemLeft h1 {
+  .projectItemLeft h3 {
     font-size: 18px;
   }
 
-  .projectItem:hover h1 {
+  .projectItem:hover h3 {
     font-size: 20px;
   }
 
@@ -785,15 +795,15 @@ footer {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   background: var(--overlay-bg, rgba(20, 20, 20, 0.5));
-  z-index: 99999;
+  z-index: 50000;
   align-items: center;
   top: 0;
   justify-content: center;
   flex-direction: column;
 }
 
-.tc-main {
-  z-index: 100000;
+  .tc-main {
+  z-index: 50001;
   width: 80%;
   max-width: 300px;
   min-height: 200px;
@@ -901,4 +911,35 @@ footer {
 
 .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
   right: 50%;
+}
+
+/* ===== Reduced Motion ===== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ===== Loading hidden state ===== */
+#simon-loading.hidden {
+  display: none;
+}
+
+/* ===== Noscript ===== */
+.noscript-warning {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 15px;
+  background: #ff4444;
+  color: #ffffff;
+  text-align: center;
+  font-size: 14px;
+  z-index: 1000000;
 }

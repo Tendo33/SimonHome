@@ -84,10 +84,16 @@ buttons.forEach(function (button) {
 /* ===== Theme Storage (localStorage) ===== */
 function getTheme() {
   try {
-    return localStorage.getItem("themeState") || "Light";
+    var saved = localStorage.getItem("themeState");
+    if (saved) return saved;
   } catch (e) {
-    return "Light";
+    // localStorage unavailable
   }
+  // Auto-detect from OS preference on first visit
+  if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+    return "Dark";
+  }
+  return "Light";
 }
 
 function saveTheme(theme) {
@@ -194,6 +200,10 @@ window.addEventListener("load", function () {
   if (pageLoading) {
     setTimeout(function () {
       pageLoading.style.opacity = "0";
+      // Remove from DOM after fade-out completes
+      pageLoading.addEventListener("transitionend", function () {
+        pageLoading.classList.add("hidden");
+      }, { once: true });
     }, 100);
   }
 });
