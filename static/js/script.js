@@ -48,7 +48,16 @@ console.log(
   var tcMainElement = document.querySelector(".tc-main");
   var tcImgElement = document.querySelector(".tc-img");
 
-  if (!tcElement || !tcMainElement || !tcImgElement) return;
+  console.log("[Popup Debug] Elements found:", {
+    tcElement: !!tcElement,
+    tcMainElement: !!tcMainElement,
+    tcImgElement: !!tcImgElement
+  });
+
+  if (!tcElement || !tcMainElement || !tcImgElement) {
+    console.error("[Popup Debug] Missing required elements for popup");
+    return;
+  }
 
   // Close popup when clicking outside the image
   tcElement.addEventListener("click", function (event) {
@@ -72,6 +81,7 @@ console.log(
   var previouslyFocused = null;
 
   function closePopup() {
+    console.log("[Popup Debug] Closing popup");
     tcElement.classList.remove("active");
     tcMainElement.classList.remove("active");
     // Restore focus to the element that triggered the popup
@@ -82,10 +92,12 @@ console.log(
   }
 
   function openPopup(imageURL, triggerEl) {
+    console.log("[Popup Debug] Opening popup for:", imageURL);
     if (!imageURL) return;
     previouslyFocused = triggerEl || document.activeElement;
     var img = new Image();
     img.onload = function () {
+      console.log("[Popup Debug] Image loaded successfully");
       tcImgElement.src = imageURL;
       tcElement.classList.add("active");
       tcMainElement.classList.add("active");
@@ -94,7 +106,7 @@ console.log(
       tcElement.focus();
     };
     img.onerror = function () {
-      console.error("Failed to load image:", imageURL);
+      console.error("[Popup Debug] Failed to load image:", imageURL);
     };
     img.src = imageURL;
   }
@@ -111,6 +123,7 @@ console.log(
   document.addEventListener("click", function (event) {
     var trigger = event.target.closest("[data-popup]");
     if (trigger) {
+      console.log("[Popup Debug] Click detected on trigger", trigger);
       event.preventDefault();
       openPopup(trigger.getAttribute("data-popup"), trigger);
     }
