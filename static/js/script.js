@@ -43,92 +43,83 @@ console.log(
 })();
 
 /* ===== Image Popup ===== */
-(function () {
+/* ===== Image Popup ===== */
+window.pop = function (imageURL) {
+  console.log("[Popup] pop called with:", imageURL);
+
+// Ensure tc element exists
   var tcElement = document.querySelector(".tc");
+  if (!tcElement) {
+    tcElement = document.createElement("div");
+    tcElement.className = "tc";
+    document.body.appendChild(tcElement);
+  }
+
+  // Ensure tc-main element exists
   var tcMainElement = document.querySelector(".tc-main");
-  var tcImgElement = document.querySelector(".tc-img");
-
-  console.log("[Popup Debug] Elements found:", {
-    tcElement: !!tcElement,
-    tcMainElement: !!tcMainElement,
-    tcImgElement: !!tcImgElement
-  });
-
-  if (!tcElement || !tcMainElement || !tcImgElement) {
-    console.error("[Popup Debug] Missing required elements for popup");
-    return;
+  if (!tcMainElement) {
+    tcMainElement = document.createElement("div");
+    tcMainElement.className = "tc-main";
+    tcElement.appendChild(tcMainElement);
   }
 
-  // Close popup when clicking outside the image
-  tcElement.addEventListener("click", function (event) {
-    if (event.target === tcElement) {
-      closePopup();
-    }
-  });
-
-  // Prevent click on image from closing
-  tcMainElement.addEventListener("click", function (event) {
-    event.stopPropagation();
-  });
-
-  // Close popup with Escape key
-  document.addEventListener("keydown", function (event) {
-    if (event.key === "Escape" && tcElement.classList.contains("active")) {
-      closePopup();
-    }
-  });
-
-  var previouslyFocused = null;
-
-  function closePopup() {
-    console.log("[Popup Debug] Closing popup");
-    tcElement.classList.remove("active");
-    tcMainElement.classList.remove("active");
-    // Restore focus to the element that triggered the popup
-    if (previouslyFocused) {
-      previouslyFocused.focus();
-      previouslyFocused = null;
-    }
+  // Ensure tc-img element exists
+  var tcImgElement = tcMainElement.querySelector(".tc-img");
+  if (!tcImgElement) {
+    tcImgElement = document.createElement("img");
+    tcImgElement.className = "tc-img";
+    tcMainElement.appendChild(tcImgElement);
   }
 
-  function openPopup(imageURL, triggerEl) {
-    console.log("[Popup Debug] Opening popup for:", imageURL);
-    if (!imageURL) return;
-    previouslyFocused = triggerEl || document.activeElement;
+  // Add click event listener to close popup (idempotent)
+  if (!tcElement.dataset.hasListener) {
+    tcElement.addEventListener("click", function (event) {
+      if (event.target === tcElement) {
+        window.pop(); // Close popup
+      }
+    });
+    tcElement.dataset.hasListener = "true";
+  }
+
+  // Prevent click propagation from main content (idempotent)
+  if (!tcMainElement.dataset.hasListener) {
+    tcMainElement.addEventListener("click", function (event) {
+      event.stopPropagation();
+    });
+    tcMainElement.dataset.hasListener = "true";
+  }
+
+  if (imageURL) {
+  // Preload image
     var img = new Image();
     img.onload = function () {
-      console.log("[Popup Debug] Image loaded successfully");
+      console.log("[Popup] Image loaded successfully");
       tcImgElement.src = imageURL;
       tcElement.classList.add("active");
       tcMainElement.classList.add("active");
-      // Move focus into the dialog
-      tcElement.setAttribute("tabindex", "-1");
       tcElement.focus();
     };
     img.onerror = function () {
-      console.error("[Popup Debug] Failed to load image:", imageURL);
+      console.error("[Popup] Failed to load image:", imageURL);
     };
     img.src = imageURL;
+  } else {
+    // Close popup
+    console.log("[Popup] Closing popup");
+    tcElement.classList.remove("active");
+    tcMainElement.classList.remove("active");
   }
+};
 
-  // Trap focus inside popup when Tab is pressed
-  tcElement.addEventListener("keydown", function (event) {
-    if (event.key === "Tab") {
-      // Since the popup has no focusable children, keep focus on the overlay
-      event.preventDefault();
-    }
-  });
-
-  // Event delegation: any element with data-popup triggers the popup
-  document.addEventListener("click", function (event) {
-    var trigger = event.target.closest("[data-popup]");
-    if (trigger) {
-      console.log("[Popup Debug] Click detected on trigger", trigger);
-      event.preventDefault();
-      openPopup(trigger.getAttribute("data-popup"), trigger);
-    }
-  });
-})();
+// Auto-bind for data-popup (to keep current HTML working without changes if desired, 
+// though manual onclick is more robust for some scenarios)
+document.addEventListener("click", function (event) {
+  var trigger = event.target.closest("[data-popup]");
+  if (trigger) {
+    event.preventDefault();
+    window.pop(trigger.getAttribute("data-popup"));
+  }
+});
 
 /* ===== Theme Storage (localStorage) ===== */
 function getTheme() {
