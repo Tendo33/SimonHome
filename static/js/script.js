@@ -111,15 +111,76 @@ window.pop = function (imageURL) {
   }
 };
 
-// Auto-bind for data-popup (to keep current HTML working without changes if desired, 
-// though manual onclick is more robust for some scenarios)
-document.addEventListener("click", function (event) {
-  var trigger = event.target.closest("[data-popup]");
-  if (trigger) {
-    event.preventDefault();
-    window.pop(trigger.getAttribute("data-popup"));
+
+
+/* ===== Toast Notification ===== */
+window.showToast = function (message) {
+  var toast = document.getElementById("toast-notification");
+  if (!toast) {
+    toast = document.createElement("div");
+    toast.id = "toast-notification";
+    // Check mark icon
+    toast.innerHTML =
+      '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>' +
+      '<span>' + message + '</span>';
+    document.body.appendChild(toast);
+  } else {
+    // Update message part only if needed, but keeping simple structure is fine
+    var span = toast.querySelector('span');
+    if (span) span.textContent = message;
   }
-});
+
+  toast.className = "show";
+  setTimeout(function () {
+    toast.className = toast.className.replace("show", "");
+  }, 3000);
+};
+
+window.copyMail = function (email) {
+  if (!email) return;
+
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(email)
+      .then(function () {
+        window.showToast("Email copied to clipboard!");
+      })
+      .catch(function (err) {
+        console.error('Async: Could not copy text: ', err);
+        fallbackCopyTextToClipboard(email);
+      });
+  } else {
+    fallbackCopyTextToClipboard(email);
+  }
+};
+
+function fallbackCopyTextToClipboard(text) {
+  var textArea = document.createElement("textarea");
+  textArea.value = text;
+
+  // Avoid scrolling to bottom
+  textArea.style.top = "0";
+  textArea.style.left = "0";
+  textArea.style.position = "fixed";
+
+  document.body.appendChild(textArea);
+  textArea.focus();
+  textArea.select();
+
+  try {
+    var successful = document.execCommand('copy');
+    var msg = successful ? 'successful' : 'unsuccessful';
+    if (successful) {
+      window.showToast("Email copied to clipboard!");
+    } else {
+      window.showToast("Failed to copy email.");
+    }
+  } catch (err) {
+    console.error('Fallback: Oops, unable to copy', err);
+    window.showToast("Failed to copy email.");
+  }
+
+  document.body.removeChild(textArea);
+}
 
 /* ===== Theme Storage (localStorage) ===== */
 function getTheme() {
