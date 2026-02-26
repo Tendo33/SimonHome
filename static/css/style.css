@@ -163,8 +163,8 @@ body {
   position: relative;
   aspect-ratio: 1/1;
   margin-top: 50px;
-  background-size: cover;
   border-radius: 50%;
+  object-fit: cover;
 }
 
 .left-div {
@@ -297,9 +297,9 @@ body {
   position: relative;
   max-width: 200px;
   aspect-ratio: 1/1;
-  background-size: cover;
   border-radius: 50%;
   border: 0.5px solid #ffffff;
+  object-fit: cover;
 }
 
 .description {
@@ -310,6 +310,7 @@ body {
 /* ===== Text Effects ===== */
 .gradientText {
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   background-size: 200%;
   background-position: 0%;
@@ -798,6 +799,8 @@ footer {
   align-items: center;
   top: 0;
   justify-content: center;
+  flex-direction: column;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
 }
 
 /* ===== Toast Notification ===== */
@@ -839,28 +842,22 @@ footer {
   fill: #4caf50; /* Green success color */
 }
 
-  flex-direction: column;
-  transition: opacity 0.25s ease, visibility 0.25s ease;
-}
-
 .tc-main {
   z-index: 50001;
   width: 80%;
-  max-width: 300px;
-  min-height: 200px;
+  max-width: 220px;
   background-color: #ffffff;
   border-radius: 15px;
-  display: flex;
+  display: block;
   transition: transform 0.25s ease;
-  align-items: center;
-  justify-content: center;
   overflow: hidden;
   transform: translateY(30%) scale(0.5);
 }
 
 .tc-img {
   width: 100%;
-  height: 100%;
+  height: auto;
+  display: block;
 }
 
 .tc.active {
@@ -880,6 +877,7 @@ footer {
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
+  user-select: none;
 }
 
 .onoffswitch-checkbox {
