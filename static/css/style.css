@@ -736,8 +736,9 @@ footer {
   }
 
   .site-card {
-    width: calc(50% - 18px);
-    margin: 9px;
+    height: 110px;
+    width: calc(100% - 30px);
+    margin: 8px 15px;
   }
 
   .project-card {
