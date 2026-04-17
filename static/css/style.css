@@ -159,12 +159,14 @@ body {
 
 .logo {
   flex-shrink: 0;
-  width: 90%;
+  width: min(74%, 168px);
+  min-width: 132px;
+  height: auto;
+  display: block;
   position: relative;
-  aspect-ratio: 1/1;
-  margin-top: 50px;
-  border-radius: 50%;
-  object-fit: cover;
+  margin-top: 18px;
+  aspect-ratio: auto;
+  object-fit: contain;
 }
 
 .left-div {
@@ -225,7 +227,7 @@ body {
 /* ===== Timeline ===== */
 #line {
   width: 100%;
-  height: 200px;
+  height: 240px;
   font-size: 13px;
   padding-left: 8px;
   scroll-snap-type: y proximity;
@@ -292,14 +294,13 @@ body {
 
 .index-logo {
   flex-shrink: 0;
-  width: 40%;
-  margin-top: 30px;
+  width: clamp(110px, 30vw, 146px);
+  height: auto;
+  display: block;
+  margin-top: 8px;
   position: relative;
-  max-width: 200px;
-  aspect-ratio: 1/1;
-  border-radius: 50%;
-  border: 0.5px solid #ffffff;
-  object-fit: cover;
+  aspect-ratio: auto;
+  object-fit: contain;
 }
 
 .description {
@@ -363,11 +364,13 @@ body {
 /* ===== Icon Bar ===== */
 .iconContainer {
   width: 100%;
-  height: 60px;
+  min-height: 68px;
   display: flex;
   align-items: center;
-  overflow-x: scroll;
+  overflow-x: auto;
+  overflow-y: visible;
   margin-top: 20px;
+  padding-bottom: 10px;
 }
 
 .iconContainer::-webkit-scrollbar {
@@ -386,16 +389,15 @@ body {
   background: var(--item-bg-color);
   align-items: center;
   justify-content: center;
-  transition:
-    width 0.3s ease,
-    opacity 0.3s ease,
-    transform 0.3s ease;
+  transition: transform 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
   flex-shrink: 0;
   /* Reset button defaults when used as <button> */
   border: none;
   cursor: pointer;
   font: inherit;
   color: inherit;
+  position: relative;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0);
 }
 
 .iconItem i,
@@ -428,17 +430,34 @@ body {
 
 .iconTip {
   white-space: nowrap;
-  display: none;
+  position: absolute;
+  left: 50%;
+  bottom: -34px;
+  transform: translate(-50%, 6px);
+  opacity: 0;
+  pointer-events: none;
+  font-size: 12px;
+  line-height: 1;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: var(--panel-bg-color);
+  color: var(--main-text-color);
+  border: 1px solid var(--card-border-color);
+  box-shadow: var(--shadow-strong);
+  transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
-.iconItem:hover {
-  width: 95px;
+.iconItem:hover,
+.iconItem:focus-visible {
   transform: translateY(-2px);
   background: var(--item-hover-color);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.16);
 }
 
-.iconItem:hover .iconTip {
-  display: block;
+.iconItem:hover .iconTip,
+.iconItem:focus-visible .iconTip {
+  opacity: 1;
+  transform: translate(-50%, 0);
 }
 
 .switch:hover {
@@ -489,43 +508,30 @@ body {
   margin: 7px;
   display: flex;
   background-color: var(--item-bg-color);
+  border: 1px solid var(--card-border-color);
   border-radius: 8px;
   padding: 15px;
   height: 115px;
   width: calc(25% - 15px);
   backdrop-filter: blur(var(--card-filter));
   -webkit-backdrop-filter: blur(var(--card-filter));
-  transition:
-    opacity 0.3s ease,
-    background-color 0.2s ease,
-    border 0.2s ease,
-    transform 0.2s ease;
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .projectItem:hover {
-  box-shadow: 0 8px 16px -4px #2c2d300c;
-  transform: translateY(-2px);
+  box-shadow: var(--shadow-strong);
+  border-color: rgba(255, 255, 255, 0.24);
+  transform: translateY(-3px);
 }
 
 .projectItem.pressed {
-  transform: scale(0.9);
+  transform: scale(0.98);
   background-color: var(--item-hover-color);
 }
 
-.projectItem:hover .projectItemLeft {
-  width: 100%;
-}
-
-.projectItem:hover .projectItemRight {
-  width: 0%;
-}
-
 .projectItem:hover .projectItemRight img {
-  transform: rotate(40deg);
-}
-
-.projectItem:hover h3 {
-  font-size: 18px;
+  transform: translateY(-2px) rotate(8deg) scale(1.04);
+  opacity: 0.92;
 }
 
 .projectItemLeft p {
@@ -538,12 +544,11 @@ body {
   font-weight: normal;
   font-size: 16px;
   margin: 0px;
-  transition: font-size 0.4s ease;
+  transition: transform 0.3s ease, color 0.3s ease;
   color: var(--item-left-title-color);
 }
 
 .projectItemLeft {
-  transition: width 0.4s ease;
   height: 100%;
   flex: 1;
   display: flex;
@@ -551,9 +556,12 @@ body {
   justify-content: center;
 }
 
+.projectItem:hover .projectItemLeft h3 {
+  transform: translateX(2px);
+}
+
 .projectItemRight {
   overflow: hidden;
-  transition: width 0.4s ease;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -567,6 +575,7 @@ body {
   height: 48px;
   object-fit: contain;
   border-radius: 8px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 /* ===== Skills ===== */
@@ -584,6 +593,15 @@ body {
   width: 820px;
   max-width: 100%;
   height: auto;
+}
+
+.listStatus {
+  width: 100%;
+  padding: 18px 20px;
+  border-radius: 10px;
+  background: var(--item-bg-color);
+  border: 1px solid var(--card-border-color);
+  color: var(--item-left-text-color);
 }
 
 /* ===== Footer ===== */
@@ -759,6 +777,11 @@ footer {
     font-size: 4vw;
   }
 
+  .index-logo {
+    width: clamp(102px, 28vw, 132px);
+    margin-top: 4px;
+  }
+
   .welcome {
     font-size: 10vw;
     margin: 2vw 0;
@@ -778,10 +801,6 @@ footer {
 
   .projectItemLeft h3 {
     font-size: 18px;
-  }
-
-  .projectItem:hover h3 {
-    font-size: 20px;
   }
 
   .skill img {
@@ -808,6 +827,7 @@ footer {
   justify-content: center;
   flex-direction: column;
   transition: opacity 0.25s ease, visibility 0.25s ease;
+  pointer-events: none;
 }
 
 /* ===== Toast Notification ===== */
@@ -853,12 +873,16 @@ footer {
   z-index: 50001;
   width: 80%;
   max-width: 220px;
-  background-color: #ffffff;
+  background: var(--panel-bg-color);
+  border: 1px solid var(--card-border-color);
   border-radius: 15px;
   display: block;
   transition: transform 0.25s ease;
   overflow: hidden;
   transform: translateY(30%) scale(0.5);
+  box-shadow: var(--shadow-strong);
+  position: relative;
+  padding-top: 38px;
 }
 
 .tc-img {
@@ -870,10 +894,26 @@ footer {
 .tc.active {
   visibility: visible;
   opacity: 1;
+  pointer-events: auto;
 }
 
 .tc-main.active {
   transform: translateY(0) scale(1);
+}
+
+.tc-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 28px;
+  height: 28px;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.12);
+  color: inherit;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
 }
 
 /* ===== Theme Switch ===== */

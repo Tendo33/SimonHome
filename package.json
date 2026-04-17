@@ -1,0 +1,21 @@
+{
+  "name": "simonhome",
+  "version": "1.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "vitest run --environment jsdom",
+    "test:watch": "vitest --environment jsdom",
+    "smoke": "vitest run tests/homepage.smoke.test.js --environment jsdom",
+    "validate:html": "html-validate index.html",
+    "validate:links": "node scripts/validate-links.mjs",
+    "validate": "npm run test && npm run validate:html && npm run validate:links",
+    "optimize:images": "node scripts/optimize-images.mjs"
+  },
+  "devDependencies": {
+    "html-validate": "^10.13.0",
+    "jsdom": "^29.0.2",
+    "sharp": "^0.34.5",
+    "vitest": "^4.1.4"
+  }
+}

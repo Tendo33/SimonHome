@@ -11,17 +11,20 @@
 /* ===== Light Theme (default) ===== */
 :root {
   --svg-color: #ffffff;
-  --main-bg-color: url(../img/background.png);
+  --main-bg-color: url(../img/optimized/background.webp?v=1.1.0);
   --main-text-color: #eeeeee;
   --gradient: linear-gradient(120deg, #bd34fe, #e0321b 30%, #41d1ff 60%);
   --purple-text-color: #747bff;
   --text-bg-color: #00000040;
-  --item-bg-color: #00000038;
-  --item-hover-color: #33333360;
+  --item-bg-color: rgb(6 18 30 / 38%);
+  --item-hover-color: rgb(20 36 52 / 68%);
   --item-left-title-color: #ffffff;
   --item-left-text-color: #ffffffcc;
   --footer-text-color: #ffffff;
   --left-tag-item: rgb(27 42 57 / 20%);
+  --panel-bg-color: rgba(248, 250, 252, 0.96);
+  --card-border-color: rgba(255, 255, 255, 0.12);
+  --shadow-strong: 0 24px 48px rgba(8, 15, 25, 0.22);
   --card-filter: 0px;
   --back-filter: 13px;
   --back-filter-color: #00000030;
@@ -49,6 +52,9 @@ html[data-theme="Dark"] {
   --item-left-text-color: rgb(160, 160, 160);
   --footer-text-color: #888888;
   --left-tag-item: linear-gradient(135deg, #1f2327, #15171a);
+  --panel-bg-color: rgba(22, 24, 31, 0.98);
+  --card-border-color: rgba(255, 255, 255, 0.08);
+  --shadow-strong: 0 24px 48px rgba(0, 0, 0, 0.45);
   --card-filter: 0px;
   --back-filter: 0px;
   --back-filter-color: transparent;
