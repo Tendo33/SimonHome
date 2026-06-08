@@ -341,9 +341,9 @@ body {
 .neonText {
   color: #fff;
   text-shadow:
-    0 0 5px var(--purple-text-color),
-    0 0 10px var(--purple-text-color),
-    0 0 20px var(--purple-text-color);
+    0 1px 2px rgb(0 0 0 / 45%),
+    0 0 8px var(--text-glow-color),
+    0 0 16px var(--text-glow-color);
   font-weight: 800;
 }
 
@@ -359,18 +359,22 @@ body {
   font-size: 17px;
   margin: 0 3px;
   padding: 2px 4px;
+  box-shadow: 0 0 0 1px rgb(255 255 255 / 18%);
 }
 
 /* ===== Icon Bar ===== */
 .iconContainer {
-  width: 100%;
+  width: max-content;
+  max-width: 100%;
   min-height: 68px;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  overflow-x: auto;
+  gap: 10px;
+  overflow-x: visible;
   overflow-y: visible;
   margin-top: 20px;
-  padding-bottom: 10px;
+  padding-bottom: 34px;
 }
 
 .iconContainer::-webkit-scrollbar {
@@ -383,7 +387,6 @@ body {
   box-sizing: border-box;
   border-radius: 7px;
   display: flex;
-  margin-left: 10px;
   backdrop-filter: blur(var(--card-filter));
   -webkit-backdrop-filter: blur(var(--card-filter));
   background: var(--item-bg-color);
@@ -415,7 +418,6 @@ body {
   box-sizing: border-box;
   border-radius: 7px;
   display: flex;
-  margin-left: 10px;
   backdrop-filter: blur(var(--card-filter));
   -webkit-backdrop-filter: blur(var(--card-filter));
   background: var(--item-bg-color);
@@ -440,9 +442,9 @@ body {
   line-height: 1;
   padding: 6px 10px;
   border-radius: 999px;
-  background: var(--panel-bg-color);
-  color: var(--main-text-color);
-  border: 1px solid var(--card-border-color);
+  background: var(--tooltip-bg-color);
+  color: var(--tooltip-text-color);
+  border: 1px solid rgb(255 255 255 / 22%);
   box-shadow: var(--shadow-strong);
   transition: transform 0.2s ease, opacity 0.2s ease;
 }
@@ -789,6 +791,7 @@ footer {
 
   .iconContainer {
     margin-top: 4vw;
+    padding-bottom: 30px;
   }
 
   .projectItem {

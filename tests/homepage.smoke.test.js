@@ -47,6 +47,15 @@ function parseIndexDocument() {
   return new DOMParser().parseFromString(readIndexHtml(), "text/html");
 }
 
+function readStyleCss() {
+  return readFileSync(path.join(process.cwd(), "static/css/style.css"), "utf8");
+}
+
+function extractCssRule(css, selector) {
+  const escapedSelector = selector.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  return css.match(new RegExp(`${escapedSelector}\\s*\\{([^}]*)\\}`))?.[1] ?? "";
+}
+
 function withHiddenHomeContent(run) {
   const contentPath = path.join(process.cwd(), "static/data/home-content.json");
   const backupPath = `${contentPath}.bak`;
@@ -142,6 +151,29 @@ describe("homepage smoke behavior", () => {
 
     expect(preloadHref).toBe("./static/img/optimized/background.webp?v=1.1.0");
     expect(cssBackground).toBe("../img/optimized/background.webp?v=1.1.0");
+  });
+
+  it("keeps the social icon bar readable without horizontal scrolling", () => {
+    const styleCss = readStyleCss();
+    const iconRule = extractCssRule(styleCss, ".iconContainer");
+    const mobileRule = styleCss.match(/@media \(max-width: 800px\)[\s\S]*?\.iconContainer\s*\{([^}]*)\}/)?.[1] ?? "";
+
+    expect(iconRule).toContain("width: max-content;");
+    expect(iconRule).toContain("max-width: 100%;");
+    expect(iconRule).toContain("flex-wrap: wrap;");
+    expect(iconRule).toContain("overflow-x: visible;");
+    expect(mobileRule).not.toContain("overflow-x: auto;");
+  });
+
+  it("uses high-contrast tooltip colors instead of light text on a light panel", () => {
+    const rootCss = readFileSync(path.join(process.cwd(), "static/css/root.css"), "utf8");
+    const styleCss = readStyleCss();
+    const iconTipRule = extractCssRule(styleCss, ".iconTip");
+
+    expect(rootCss).toContain("--tooltip-bg-color: #0c2336;");
+    expect(rootCss).toContain("--tooltip-text-color: #f7fbff;");
+    expect(iconTipRule).toContain("background: var(--tooltip-bg-color);");
+    expect(iconTipRule).toContain("color: var(--tooltip-text-color);");
   });
 
   it("allows link validation to pass even when home-content.json is absent", () => {

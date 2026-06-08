@@ -14,8 +14,11 @@
   --main-bg-color: url(../img/optimized/background.webp?v=1.1.0);
   --main-text-color: #eeeeee;
   --gradient: linear-gradient(120deg, #bd34fe, #e0321b 30%, #41d1ff 60%);
-  --purple-text-color: #747bff;
-  --text-bg-color: #00000040;
+  --purple-text-color: #5965ff;
+  --text-bg-color: #0d263a;
+  --text-glow-color: rgb(72 93 255 / 72%);
+  --tooltip-bg-color: #0c2336;
+  --tooltip-text-color: #f7fbff;
   --item-bg-color: rgb(6 18 30 / 38%);
   --item-hover-color: rgb(20 36 52 / 68%);
   --item-left-title-color: #ffffff;
@@ -46,6 +49,9 @@ html[data-theme="Dark"] {
   --gradient: linear-gradient(120deg, rgb(133, 62, 255), #f76cc6 30%, rgb(255, 255, 255) 60%);
   --purple-text-color: #747bff;
   --text-bg-color: rgb(26, 4, 48);
+  --text-glow-color: rgb(116 123 255 / 76%);
+  --tooltip-bg-color: rgb(238 243 248 / 96%);
+  --tooltip-text-color: #111827;
   --item-bg-color: rgb(19, 20, 24);
   --item-hover-color: rgb(30, 33, 38);
   --item-left-title-color: rgb(255, 255, 255);
