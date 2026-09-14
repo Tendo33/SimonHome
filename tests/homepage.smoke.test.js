@@ -149,8 +149,8 @@ describe("homepage smoke behavior", () => {
     )?.[1];
     const cssBackground = rootCss.match(/--main-bg-color:\s*url\(([^)]+background\.webp[^)]*)\);/)?.[1];
 
-    expect(preloadHref).toBe("./static/img/optimized/background.webp?v=1.1.0");
-    expect(cssBackground).toBe("../img/optimized/background.webp?v=1.1.0");
+    expect(preloadHref).toBe("./static/img/optimized/background.webp?v=1.1.1");
+    expect(cssBackground).toBe("../img/optimized/background.webp?v=1.1.1");
   });
 
   it("keeps the social icon bar readable without horizontal scrolling", () => {

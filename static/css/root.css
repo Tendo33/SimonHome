@@ -11,7 +11,7 @@
 /* ===== Light Theme (default) ===== */
 :root {
   --svg-color: #ffffff;
-  --main-bg-color: url(../img/optimized/background.webp?v=1.1.0);
+  --main-bg-color: url(../img/optimized/background.webp?v=1.1.1);
   --main-text-color: #eeeeee;
   --gradient: linear-gradient(120deg, #bd34fe, #e0321b 30%, #41d1ff 60%);
   --purple-text-color: #5965ff;
