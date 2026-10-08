@@ -18,13 +18,13 @@
 	<meta property="og:description" content="LLM Engineer | Open Source Enthusiast | Stay hungry, Stay foolish." />
 	<meta property="og:type" content="website" />
 	<meta property="og:url" content="https://simonsun.cc/" />
-	<meta property="og:image" content="https://simonsun.cc/static/img/logo.png?v=1.1.1" />
+	<meta property="og:image" content="https://simonsun.cc/static/img/optimized/og-logo.png?v=1.2.0" />
 
 	<!-- Twitter Card -->
 	<meta name="twitter:card" content="summary" />
 	<meta name="twitter:title" content="SimonHome - SimonSun's Personal Homepage" />
 	<meta name="twitter:description" content="LLM Engineer | Open Source Enthusiast | Stay hungry, Stay foolish." />
-	<meta name="twitter:image" content="https://simonsun.cc/static/img/logo.png?v=1.1.1" />
+	<meta name="twitter:image" content="https://simonsun.cc/static/img/optimized/og-logo.png?v=1.2.0" />
 
 	<!-- Preconnect external domains -->
 	<link rel="preconnect" href="https://skillicons.dev" crossorigin />
@@ -34,6 +34,7 @@
 	<!-- Prevent theme flash: apply saved theme before first paint -->
 	<script>
 		(function () {
+			document.documentElement.classList.add("js");
 			var t;
 			try { t = localStorage.getItem("themeState"); } catch (e) { }
 			if (!t && window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) t = "Dark";
@@ -53,9 +54,10 @@
 	</noscript>
 
 	<!-- Preload critical assets -->
-	<link rel="preload" href="./static/fonts/Ubuntu-Regular.ttf" as="font" type="font/ttf" crossorigin />
-	<link rel="preload" href="./static/fonts/Pacifico-Regular.ttf" as="font" type="font/ttf" crossorigin />
-	<link rel="preload" href="./static/img/optimized/background.webp?v=1.1.1" as="image" />
+	<link rel="preload" href="./static/fonts/Ubuntu-Regular.woff2?v=1.2.0" as="font" type="font/woff2" crossorigin />
+	<link rel="preload" href="./static/fonts/Ubuntu-Bold.woff2?v=1.2.0" as="font" type="font/woff2" crossorigin />
+	<link rel="preload" href="./static/fonts/Pacifico-Regular.woff2?v=1.2.0" as="font" type="font/woff2" crossorigin />
+	<link rel="preload" href="./static/img/optimized/background-blur.webp?v=1.2.0" as="image" />
 
 	<!-- Canonical URL -->
 	<link rel="canonical" href="https://simonsun.cc/" />
@@ -79,8 +81,8 @@
 	}
 	</script>
 
-	<link rel="stylesheet" href="./static/css/style.css?v=1.1.1" />
-	<link rel="stylesheet" href="./static/css/root.css?v=1.1.1" />
+	<link rel="stylesheet" href="./static/css/style.css?v=1.2.0" />
+	<link rel="stylesheet" href="./static/css/root.css?v=1.2.0" />
 </head>
 
 <body>
@@ -104,7 +106,7 @@
 
 	<div class="simon-main">
 		<aside id="sidebar" class="simon-left" aria-label="Personal information sidebar">
-			<img class="logo" src="./static/img/optimized/logo.webp?v=1.1.1" alt="SimonSun's avatar" width="480" height="480" loading="eager" decoding="async" fetchpriority="high" />
+			<img class="logo" src="./static/img/optimized/logo.webp?v=1.2.0" alt="SimonSun's avatar" width="480" height="480" loading="eager" decoding="async" fetchpriority="high" />
 			<div class="left-div left-des">
 				<div class="left-des-item">
 					<svg aria-hidden="true" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
@@ -201,19 +203,19 @@
 		</aside>
 		<main id="main-content" class="simon-right">
 			<header>
-				<img class="index-logo" src="./static/img/optimized/logo.webp?v=1.1.1" alt="SimonSun's avatar" width="480" height="480" loading="eager" decoding="async" fetchpriority="high" />
-				<h1 class="welcome">
+				<img class="index-logo" src="./static/img/optimized/logo.webp?v=1.2.0" alt="SimonSun's avatar" width="480" height="480" loading="eager" decoding="async" fetchpriority="high" />
+				<h1 class="welcome hero-rise">
 					Hello I'm <span class="gradientText"> SimonSun </span>
 				</h1>
-				<p class="description">
+				<p class="description hero-rise" data-typewriter>
 					👦 <span class="neonText textBackground">LLM</span> Engineer
 				</p>
-				<p class="description">
+				<p class="description hero-rise" data-typewriter>
 					📝 Stay <span class="neonText textBackground">hungry</span>, Stay
 					<span class="neonText textBackground">foolish</span>.
 				</p>
 
-				<nav class="iconContainer" aria-label="Social links">
+				<nav class="iconContainer hero-rise" aria-label="Social links">
 					<a class="iconItem" href="https://github.com/Tendo33" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
 						<svg aria-hidden="true" viewBox="0 0 1024 1024" version="1.1"
 							xmlns="http://www.w3.org/2000/svg">
@@ -253,6 +255,10 @@
 						</svg>
 						<span class="iconTip">QQ</span>
 					</button>
+					<button class="iconItem launcher-trigger" type="button" aria-label="快速跳转 (/ 或 ⌘K)" aria-haspopup="dialog" aria-controls="launcher">
+						<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" /></svg>
+						<span class="iconTip">搜索 /</span>
+					</button>
 					<div class="switch" role="group" aria-label="Toggle theme">
 						<div class="onoffswitch">
 							<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch"
@@ -265,13 +271,13 @@
 					</div>
 				</nav>
 
-				<div class="tanChiShe">
+				<div class="tanChiShe hero-rise">
 					<img id="tanChiShe" src="https://raw.githubusercontent.com/Tendo33/Tendo33/output/github-snake.svg"
 						alt="GitHub contribution snake animation" loading="lazy" decoding="async" crossorigin="anonymous" />
 				</div>
 			</header>
 
-			<section aria-labelledby="sites-title">
+			<section class="scroll-rise" aria-labelledby="sites-title">
 				<h2 id="sites-title" class="title">
 					<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
 						viewBox="0 0 24 24">
@@ -393,7 +399,7 @@
 				</div>
 			</section>
 
-			<section aria-labelledby="projects-title">
+			<section class="scroll-rise" aria-labelledby="projects-title">
 				<h2 id="projects-title" class="title">
 					<svg aria-hidden="true" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
 						<path
@@ -487,7 +493,7 @@
 				</div>
 			</section>
 
-			<section aria-labelledby="plugins-title">
+			<section class="scroll-rise" aria-labelledby="plugins-title">
 				<h2 id="plugins-title" class="title">
 					<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
 						<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m8 8-4 4 4 4m8 0 4-4-4-4m-2-3-4 14" />
@@ -525,7 +531,7 @@
 				</div>
 			</section>
 
-			<section aria-labelledby="skills-title">
+			<section class="scroll-rise" aria-labelledby="skills-title">
 				<h2 id="skills-title" class="title">
 					<svg aria-hidden="true" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
 						<path
@@ -549,6 +555,7 @@
 	<footer>
 		SimonSun &copy; <span id="copyright-year">2025</span> |
 		<a href="https://simonsun.cc/" rel="noopener noreferrer"> Simon's Home🐶 </a>
+		<span class="footer-hint"> | 按 <kbd>/</kbd> 快速跳转</span>
 	</footer>
 	<div id="toast-notification" role="status" aria-live="polite" aria-atomic="true">
 		<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" /></svg>
@@ -560,7 +567,18 @@
 			<img class="tc-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="Preview image" />
 		</div>
 	</div>
-	<script type="module" src="./static/js/script.js?v=1.1.1"></script>
+	<dialog id="launcher" class="launcher" aria-label="快速跳转">
+		<div class="launcher-form" role="search">
+			<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" /></svg>
+			<input class="launcher-input" type="text" placeholder="搜站点、项目、插件…" autocomplete="off" spellcheck="false" aria-label="搜索站点、项目和插件" aria-controls="launcher-results" aria-autocomplete="list" role="combobox" aria-expanded="true" />
+			<kbd>esc</kbd>
+		</div>
+		<!-- Combobox + filtered listbox (ARIA APG pattern); a native <select> cannot filter as you type. -->
+		<!-- [html-validate-disable-next prefer-native-element] -->
+		<ul id="launcher-results" class="launcher-results" role="listbox" aria-label="搜索结果"></ul>
+		<p class="launcher-foot"><span><kbd>↑</kbd> <kbd>↓</kbd> 选择</span><span><kbd>↵</kbd> 打开</span></p>
+	</dialog>
+	<script type="module" src="./static/js/script.js?v=1.2.0"></script>
 
 	<script>
 		(function () {

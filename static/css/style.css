@@ -1,13 +1,21 @@
 /* ===== Font Faces ===== */
 @font-face {
   font-family: "Ubuntu";
-  src: url(../fonts/Ubuntu-Regular.ttf) format("truetype");
+  src: url(../fonts/Ubuntu-Regular.woff2?v=1.2.0) format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Ubuntu";
+  src: url(../fonts/Ubuntu-Bold.woff2?v=1.2.0) format("woff2");
+  font-weight: 700;
   font-display: swap;
 }
 
 @font-face {
   font-family: "Pacifico";
-  src: url(../fonts/Pacifico-Regular.ttf) format("truetype");
+  src: url(../fonts/Pacifico-Regular.woff2?v=1.2.0) format("woff2");
   font-display: swap;
 }
 
@@ -58,21 +66,10 @@ body {
   min-height: 100vh;
   width: 100%;
   position: relative;
-  font-family: "Ubuntu", sans-serif;
-  background: var(--main-bg-color);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
+  font-family: "Ubuntu", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  background: var(--page-bg-color);
   color: var(--main-text-color);
   transition: color 0.3s ease, background-color 0.3s ease;
-}
-
-/* Disable fixed bg on touch devices (causes severe scroll jank) */
-@media (hover: none) {
-  body {
-    background-attachment: scroll;
-  }
 }
 
 /* ===== Loading Screen ===== */
@@ -89,6 +86,8 @@ body {
   pointer-events: none;
   opacity: 1;
   display: flex;
+  /* Failsafe: fade out even if app.js never runs (blocked or failed to load) */
+  animation: loaderFailsafe 0.4s ease 4s forwards;
   justify-content: center;
   align-items: center;
   transition: opacity 0.5s ease;
@@ -117,14 +116,26 @@ body {
   }
 }
 
-/* ===== Background Filter ===== */
+@keyframes loaderFailsafe {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+/* ===== Background Layer ===== */
+/* The blur is baked into the image (see scripts/optimize-images.mjs), so this
+   fixed layer never runs a backdrop-filter. JS drifts it with the pointer via `translate`. */
 .simon-filter {
   position: fixed;
-  width: 100%;
-  height: 100%;
-  background: var(--back-filter-color);
-  backdrop-filter: blur(var(--back-filter));
-  -webkit-backdrop-filter: blur(var(--back-filter));
+  inset: -32px;
+  background:
+    linear-gradient(var(--back-filter-color), var(--back-filter-color)),
+    var(--main-bg-color);
+  background-size: cover;
+  background-position: center;
+  transition: translate 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+  will-change: translate;
   z-index: -1;
 }
 
@@ -144,8 +155,9 @@ body {
   overflow-y: auto;
   width: 230px;
   height: 100vh;
+  height: 100dvh;
   display: flex;
-  padding: 0 15px;
+  padding: 0 15px 15px;
   position: sticky;
   top: 0;
   left: 0;
@@ -175,8 +187,6 @@ body {
   border-radius: 13px;
   margin-top: 15px;
   padding: 20px;
-  backdrop-filter: blur(var(--card-filter));
-  -webkit-backdrop-filter: blur(var(--card-filter));
   background: var(--item-bg-color);
 }
 
@@ -225,13 +235,26 @@ body {
 }
 
 /* ===== Timeline ===== */
+/* Fills the rest of the sidebar, so the sidebar itself never needs to scroll */
+.left-time {
+  flex: 1 1 0;
+  min-height: 170px;
+  display: flex;
+  flex-direction: column;
+  padding: 6px 20px;
+}
+
 #line {
+  flex: 1;
+  min-height: 0;
   width: 100%;
-  height: 240px;
   font-size: 13px;
-  padding-left: 8px;
-  scroll-snap-type: y proximity;
-  overflow-y: scroll;
+  padding: 0 0 22px 8px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  /* fade the edges so it reads as scrollable */
+  -webkit-mask-image: linear-gradient(transparent, #000 18px, #000 calc(100% - 26px), transparent);
+  mask-image: linear-gradient(transparent, #000 18px, #000 calc(100% - 26px), transparent);
 }
 
 #line li {
@@ -240,7 +263,6 @@ body {
   padding: 15px 0px 0px 15px;
   border-left: 2px solid var(--timeline-border, #d5d5d5);
   border-radius: 0;
-  scroll-snap-align: end;
   color: var(--main-text-color);
 }
 
@@ -288,8 +310,9 @@ body {
 
 .welcome {
   font-size: 65px;
-  font-weight: 800;
+  font-weight: 700;
   margin: 20px 0;
+  text-shadow: 0 2px 18px rgb(0 0 0 / 18%);
 }
 
 .index-logo {
@@ -316,6 +339,8 @@ body {
   background-size: 200%;
   background-position: 0%;
   font-family: "Pacifico", cursive;
+  font-weight: 400;
+  text-shadow: none;
   animation: backgroundSizeAnimation 10s ease-in-out infinite;
   background-image: var(--gradient);
 }
@@ -344,7 +369,7 @@ body {
     0 1px 2px rgb(0 0 0 / 45%),
     0 0 8px var(--text-glow-color),
     0 0 16px var(--text-glow-color);
-  font-weight: 800;
+  font-weight: 700;
 }
 
 .purpleText {
@@ -353,7 +378,7 @@ body {
 }
 
 .textBackground {
-  font-weight: 800;
+  font-weight: 700;
   background: var(--text-bg-color);
   border-radius: 5px;
   font-size: 17px;
@@ -387,8 +412,6 @@ body {
   box-sizing: border-box;
   border-radius: 7px;
   display: flex;
-  backdrop-filter: blur(var(--card-filter));
-  -webkit-backdrop-filter: blur(var(--card-filter));
   background: var(--item-bg-color);
   align-items: center;
   justify-content: center;
@@ -418,8 +441,6 @@ body {
   box-sizing: border-box;
   border-radius: 7px;
   display: flex;
-  backdrop-filter: blur(var(--card-filter));
-  -webkit-backdrop-filter: blur(var(--card-filter));
   background: var(--item-bg-color);
   align-items: center;
   justify-content: center;
@@ -483,9 +504,11 @@ body {
   display: flex;
   align-items: center;
   font-size: 26px;
-  font-weight: 800;
+  font-weight: 700;
   margin: 20px 0;
   transition: transform 0.4s ease;
+  /* keeps titles readable where they cross the white clouds */
+  text-shadow: 0 1px 2px rgb(0 0 0 / 30%), 0 2px 14px rgb(0 0 0 / 28%);
 }
 
 .title i,
@@ -494,6 +517,7 @@ body {
   height: 26px;
   width: 26px;
   fill: var(--fill);
+  filter: drop-shadow(0 1px 4px rgb(0 0 0 / 35%));
 }
 
 .title:hover {
@@ -515,8 +539,6 @@ body {
   padding: 15px;
   height: 115px;
   width: calc(25% - 15px);
-  backdrop-filter: blur(var(--card-filter));
-  -webkit-backdrop-filter: blur(var(--card-filter));
   transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -611,8 +633,6 @@ footer {
   padding: 10px;
   text-align: center;
   width: 100%;
-  backdrop-filter: blur(var(--card-filter));
-  -webkit-backdrop-filter: blur(var(--card-filter));
   background: var(--item-bg-color);
   color: var(--footer-text-color);
   font-size: 13px;
@@ -623,7 +643,7 @@ footer {
   display: none;
   position: fixed;
   top: 15px;
-  left: 15px;
+  right: 15px;
   z-index: 10001;
   width: 40px;
   height: 40px;
@@ -743,28 +763,12 @@ footer {
     transform: translateX(0);
   }
 
-  .site-card .projectItemRight {
-    display: none;
-  }
-
-  .site-card .projectItemRight img {
-    display: none;
-  }
-
-  .site-card .projectItemLeft {
-    width: 100%;
-  }
-
-  .site-card {
-    height: 110px;
-    width: calc(100% - 30px);
-    margin: 8px 15px;
-  }
-
+  .site-card,
   .project-card {
-    height: 110px;
-    margin: 8px 15px;
-    width: calc(100% - 30px);
+    height: auto;
+    min-height: 82px;
+    width: 100%;
+    margin: 6px 0;
   }
 
   .simon-right {
@@ -795,15 +799,26 @@ footer {
   }
 
   .projectItem {
-    padding: 10px;
+    padding: 12px 14px;
+    align-items: center;
   }
 
   .projectItemLeft p {
     font-size: 13px;
+    margin-top: 4px;
   }
 
   .projectItemLeft h3 {
-    font-size: 18px;
+    font-size: 17px;
+  }
+
+  .projectItemRight {
+    width: 52px;
+  }
+
+  .projectItemRight img {
+    width: 40px;
+    height: 40px;
   }
 
   .skill img {
@@ -1003,6 +1018,513 @@ footer {
   right: 50%;
 }
 
+/* ===== Highlights ===== */
+
+/* -- Cards: glass sheen + a white hairline lit near the pointer -- */
+.projectItem {
+  position: relative;
+  isolation: isolate;
+  background-image: linear-gradient(180deg, rgb(255 255 255 / 7%), transparent 45%);
+}
+
+.projectItem::before,
+.projectItem::after {
+  content: "";
+  position: absolute;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+/* 1px hairline, lit only near the pointer */
+.projectItem::before {
+  inset: -1px;
+  padding: 1px;
+  background: radial-gradient(
+    220px circle at var(--mx, -500px) var(--my, -500px),
+    var(--spot-1),
+    var(--spot-2) 45%,
+    transparent 75%
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box exclude,
+    linear-gradient(#000 0 0);
+}
+
+/* soft fill glow under the pointer */
+.projectItem::after {
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(
+    320px circle at var(--mx, -500px) var(--my, -500px),
+    var(--spot-fill),
+    transparent 65%
+  );
+}
+
+.projectItem:hover::before,
+.projectItem:hover::after {
+  opacity: 1;
+}
+
+/* -- Entrance: hero lines rise in, sections rise in on scroll -- */
+.js .hero-rise {
+  animation: riseIn 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) backwards;
+  animation-delay: calc(var(--rise, 0) * 70ms + 120ms);
+}
+
+header .description:nth-of-type(1) {
+  --rise: 1;
+}
+
+header .description:nth-of-type(2) {
+  --rise: 2;
+}
+
+header .iconContainer {
+  --rise: 3;
+}
+
+header .tanChiShe {
+  --rise: 4;
+}
+
+.js .scroll-rise {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.js .scroll-rise.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* cards follow their section in a short cascade; "backwards" so hover transforms still apply afterwards */
+.js .scroll-rise.is-visible .projectItem {
+  animation: riseIn 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) backwards;
+  animation-delay: calc(min(var(--i, 0), 11) * 35ms + 80ms);
+}
+
+@keyframes riseIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+}
+
+/* -- Sidebar: blocks slide in from the left, tags pop in one by one -- */
+.logo {
+  --s: 0;
+  transform-origin: 50% 85%;
+}
+
+.left-des {
+  --s: 1;
+}
+
+.left-tag {
+  --s: 2;
+}
+
+.left-time {
+  --s: 3;
+}
+
+.js .simon-left > * {
+  animation: sideIn 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) backwards;
+  animation-delay: calc(var(--s, 0) * 80ms + 60ms);
+}
+
+.js .left-tag-item {
+  animation: tagPop 0.45s cubic-bezier(0.2, 0.9, 0.3, 1.2) backwards;
+  animation-delay: calc(min(var(--i, 0), 14) * 28ms + 260ms);
+}
+
+@keyframes sideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-18px);
+  }
+}
+
+@keyframes tagPop {
+  from {
+    opacity: 0;
+    transform: translateY(6px) scale(0.9);
+  }
+}
+
+.left-div {
+  background-image: linear-gradient(180deg, rgb(255 255 255 / 6%), transparent 45%);
+}
+
+.left-tag-item {
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.left-tag-item:hover {
+  transform: translateY(-2px);
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 22%);
+}
+
+.logo:hover {
+  animation: logoWiggle 0.7s ease;
+}
+
+/* keep sideIn in the list so it isn't restarted when the hover ends */
+.js .simon-left > .logo:hover {
+  animation:
+    sideIn 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) backwards,
+    logoWiggle 0.7s ease;
+  animation-delay: calc(var(--s, 0) * 80ms + 60ms), 0s;
+}
+
+@keyframes logoWiggle {
+  25% {
+    transform: rotate(-5deg) scale(1.03);
+  }
+  55% {
+    transform: rotate(4deg) scale(1.03);
+  }
+  80% {
+    transform: rotate(-1.5deg);
+  }
+}
+
+#line li > div:not(.focus) {
+  transition: transform 0.25s ease;
+}
+
+#line li:hover > div:not(.focus) {
+  transform: translateX(3px);
+}
+
+#line .focus {
+  transition:
+    background-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+#line li:hover .focus {
+  background-color: var(--timeline-dot, #aaffcd);
+  box-shadow: 0 0 0 3px rgb(170 255 205 / 16%);
+}
+
+/* Timeline items are brightest mid-box and dim toward the faded edges as you scroll */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    #line li {
+      animation: lineFocus linear both;
+      animation-timeline: view();
+    }
+  }
+}
+
+@keyframes lineFocus {
+  0% {
+    opacity: 0.35;
+    translate: -4px 0;
+  }
+  22%,
+  78% {
+    opacity: 1;
+    translate: 0 0;
+  }
+  100% {
+    opacity: 0.35;
+  }
+}
+
+/* -- Typewriter -- */
+.tw-char.tw-pending {
+  visibility: hidden;
+}
+
+/* neon word pills stay invisible until their first letter is typed */
+.textBackground:has(> .tw-pending:first-child) {
+  background: transparent;
+  box-shadow: none;
+}
+
+.tw-caret {
+  display: inline-block;
+  width: 2px;
+  height: 1.05em;
+  margin-left: 2px;
+  vertical-align: -0.15em;
+  background: currentColor;
+  box-shadow: 0 0 8px var(--text-glow-color);
+  animation: caretBlink 1s steps(1) infinite;
+}
+
+@keyframes caretBlink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* -- ⌘K launcher (glass panel) -- */
+.iconItem.launcher-trigger svg {
+  fill: none;
+  stroke: var(--fill);
+  width: 21px;
+  height: 21px;
+  margin-right: 0;
+}
+
+.launcher {
+  width: min(560px, calc(100vw - 32px));
+  max-height: min(540px, calc(100dvh - 120px));
+  margin: 12vh auto auto;
+  padding: 0;
+  border: 1px solid var(--card-border-color);
+  border-radius: 16px;
+  background: var(--glass-panel);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  color: var(--main-text-color);
+  box-shadow: var(--shadow-strong), inset 0 1px 0 rgb(255 255 255 / 10%);
+  overflow: hidden;
+}
+
+.launcher[open] {
+  display: flex;
+  flex-direction: column;
+  animation: launcherIn 0.22s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+@keyframes launcherIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.98);
+  }
+}
+
+.launcher::backdrop {
+  background: rgb(0 0 0 / 35%);
+}
+
+.launcher-form {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 18px;
+  border-bottom: 1px solid var(--card-border-color);
+}
+
+.launcher-form svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  opacity: 0.7;
+}
+
+.launcher-input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: 16px;
+}
+
+.launcher-input::placeholder {
+  color: var(--item-left-text-color);
+  opacity: 0.7;
+}
+
+.launcher kbd {
+  font-family: inherit;
+  font-size: 11px;
+  line-height: 1;
+  padding: 3px 6px;
+  border-radius: 5px;
+  border: 1px solid rgb(255 255 255 / 22%);
+  color: var(--item-left-text-color);
+}
+
+.launcher-results {
+  list-style: none;
+  overflow-y: auto;
+  padding: 6px 8px 8px;
+  flex: 1;
+  scrollbar-width: thin;
+}
+
+.launcher-group {
+  padding: 10px 10px 4px;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--item-left-text-color);
+  opacity: 0.75;
+}
+
+.launcher-option {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 9px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.launcher-option img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  flex-shrink: 0;
+  border-radius: 6px;
+}
+
+.launcher-option-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.launcher-option-title {
+  font-size: 15px;
+  color: var(--item-left-title-color);
+}
+
+.launcher-option-desc {
+  font-size: 12px;
+  color: var(--item-left-text-color);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.launcher-option-host {
+  margin-left: auto;
+  font-size: 11px;
+  color: var(--item-left-text-color);
+  opacity: 0.7;
+  white-space: nowrap;
+}
+
+.launcher-option[aria-selected="true"] {
+  background: rgb(255 255 255 / 10%);
+}
+
+.launcher-option[aria-selected="true"]::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 8px;
+  bottom: 8px;
+  width: 3px;
+  border-radius: 3px;
+  background: var(--gradient);
+}
+
+.launcher-empty {
+  padding: 28px 12px;
+  text-align: center;
+  color: var(--item-left-text-color);
+  font-size: 14px;
+}
+
+.launcher-foot {
+  display: flex;
+  gap: 16px;
+  padding: 10px 18px;
+  border-top: 1px solid var(--card-border-color);
+  font-size: 12px;
+  color: var(--item-left-text-color);
+}
+
+.launcher-foot kbd {
+  margin-right: 3px;
+}
+
+.footer-hint kbd {
+  font-family: inherit;
+  font-size: 11px;
+  padding: 1px 5px;
+  border-radius: 4px;
+  border: 1px solid rgb(255 255 255 / 30%);
+}
+
+@media (max-width: 800px) {
+  .launcher {
+    margin-top: 10vh;
+  }
+
+  .launcher-option-host,
+  .launcher-foot,
+  .footer-hint {
+    display: none;
+  }
+
+  .js .simon-left > *,
+  .js .left-tag-item {
+    animation-name: none;
+  }
+
+  .js .simon-left.active > * {
+    animation-name: sideIn;
+  }
+
+  .js .simon-left.active .left-tag-item {
+    animation-name: tagPop;
+  }
+}
+
+@media (min-width: 801px) and (max-height: 760px) {
+  .logo {
+    width: 116px;
+    min-width: 0;
+    margin-top: 10px;
+  }
+
+  .left-div {
+    margin-top: 10px;
+  }
+
+  .left-des {
+    padding: 14px 18px;
+  }
+
+  .left-tag {
+    padding: 12px;
+  }
+
+  .left-tag-item {
+    height: 25px;
+    padding: 8px;
+    font-size: 12px;
+  }
+
+  .left-time {
+    min-height: 140px;
+  }
+}
+
+/* No pointer: no parallax, no spotlight */
+@media (hover: none) {
+  .simon-filter {
+    translate: none;
+  }
+
+  .projectItem::before,
+  .projectItem::after {
+    display: none;
+  }
+}
+
 /* ===== Reduced Motion ===== */
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -1012,6 +1534,15 @@ footer {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+
+  .simon-filter {
+    translate: none;
+  }
+
+  .js .scroll-rise {
+    opacity: 1;
+    transform: none;
   }
 }
 

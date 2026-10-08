@@ -1,7 +1,7 @@
 /*
   Theme System
   --------------------------------------------------
-  Light theme: blurred background + dark translucent cards + white text/SVG
+  Light theme: pre-blurred background + dark translucent cards + white text/SVG
   Dark theme:  solid dark background + dark cards + white text/SVG
 
   All CSS variables use kebab-case for consistency.
@@ -11,7 +11,8 @@
 /* ===== Light Theme (default) ===== */
 :root {
   --svg-color: #ffffff;
-  --main-bg-color: url(../img/optimized/background.webp?v=1.1.1);
+  --main-bg-color: url(../img/optimized/background-blur.webp?v=1.2.0);
+  --page-bg-color: #3d8fc4;
   --main-text-color: #eeeeee;
   --gradient: linear-gradient(120deg, #bd34fe, #e0321b 30%, #41d1ff 60%);
   --purple-text-color: #5965ff;
@@ -28,9 +29,11 @@
   --panel-bg-color: rgba(248, 250, 252, 0.96);
   --card-border-color: rgba(255, 255, 255, 0.12);
   --shadow-strong: 0 24px 48px rgba(8, 15, 25, 0.22);
-  --card-filter: 0px;
-  --back-filter: 13px;
   --back-filter-color: #00000030;
+  --spot-1: rgb(255 255 255 / 75%);
+  --spot-2: rgb(255 255 255 / 16%);
+  --spot-fill: rgb(255 255 255 / 6%);
+  --glass-panel: rgb(8 22 36 / 74%);
   --fill: #ffffff;
   --loading-bg: radial-gradient(#e8f0fe, #d8eaff);
   --loading-dot: #472eff;
@@ -45,6 +48,7 @@
 html[data-theme="Dark"] {
   --svg-color: #ffffff;
   --main-bg-color: #0a0a0f;
+  --page-bg-color: #0a0a0f;
   --main-text-color: #e8e8e8;
   --gradient: linear-gradient(120deg, rgb(133, 62, 255), #f76cc6 30%, rgb(255, 255, 255) 60%);
   --purple-text-color: #747bff;
@@ -61,9 +65,11 @@ html[data-theme="Dark"] {
   --panel-bg-color: rgba(22, 24, 31, 0.98);
   --card-border-color: rgba(255, 255, 255, 0.08);
   --shadow-strong: 0 24px 48px rgba(0, 0, 0, 0.45);
-  --card-filter: 0px;
-  --back-filter: 0px;
   --back-filter-color: transparent;
+  --spot-1: rgb(255 255 255 / 55%);
+  --spot-2: rgb(255 255 255 / 10%);
+  --spot-fill: rgb(255 255 255 / 4%);
+  --glass-panel: rgb(22 24 31 / 86%);
   --fill: #ffffff;
   --loading-bg: radial-gradient(#111118, #0a0a0f);
   --loading-dot: #747bff;

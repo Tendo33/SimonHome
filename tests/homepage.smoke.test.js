@@ -7,8 +7,11 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import {
   bindActionButtons,
+  collectLauncherItems,
   createPopupController,
-  ensureToast
+  ensureToast,
+  filterLauncherItems,
+  prepareTypewriter
 } from "../static/js/app.js";
 
 function createShell() {
@@ -145,12 +148,29 @@ describe("homepage smoke behavior", () => {
     const rootCss = readFileSync(path.join(process.cwd(), "static/css/root.css"), "utf8");
 
     const preloadHref = indexHtml.match(
-      /<link rel="preload" href="([^"]+background\.webp[^"]*)" as="image" \/>/
+      /<link rel="preload" href="([^"]+background[^"]*\.webp[^"]*)" as="image" \/>/
     )?.[1];
-    const cssBackground = rootCss.match(/--main-bg-color:\s*url\(([^)]+background\.webp[^)]*)\);/)?.[1];
+    const cssBackground = rootCss.match(/--main-bg-color:\s*url\(([^)]+background[^)]*\.webp[^)]*)\);/)?.[1];
 
-    expect(preloadHref).toBe("./static/img/optimized/background.webp?v=1.1.1");
-    expect(cssBackground).toBe("../img/optimized/background.webp?v=1.1.1");
+    expect(preloadHref).toBe("./static/img/optimized/background-blur.webp?v=1.2.0");
+    expect(cssBackground).toBe("../img/optimized/background-blur.webp?v=1.2.0");
+  });
+
+  it("uses the package version for every cache-busted asset reference", () => {
+    const pkg = JSON.parse(readFileSync(path.join(process.cwd(), "package.json"), "utf8"));
+    const refs = [readIndexHtml(), readStyleCss(), readFileSync(path.join(process.cwd(), "static/css/root.css"), "utf8")]
+      .flatMap((text) => [...text.matchAll(/\?v=([\d.]+)/g)].map((m) => m[1]));
+
+    expect(refs.length).toBeGreaterThan(0);
+    expect(new Set(refs)).toEqual(new Set([pkg.version]));
+  });
+
+  it("preloads the same woff2 fonts the stylesheet declares", () => {
+    const preloads = [...readIndexHtml().matchAll(/href="\.\/static\/fonts\/([^"]+)" as="font" type="font\/woff2"/g)].map((m) => m[1]);
+    const declared = [...readStyleCss().matchAll(/url\(\.\.\/fonts\/([^)]+)\) format\("woff2"\)/g)].map((m) => m[1]);
+
+    expect(preloads.sort()).toEqual(declared.sort());
+    preloads.forEach((file) => expect(existsSync(path.join(process.cwd(), "static/fonts", file.split("?")[0]))).toBe(true));
   });
 
   it("keeps the social icon bar readable without horizontal scrolling", () => {
@@ -174,6 +194,42 @@ describe("homepage smoke behavior", () => {
     expect(rootCss).toContain("--tooltip-text-color: #f7fbff;");
     expect(iconTipRule).toContain("background: var(--tooltip-bg-color);");
     expect(iconTipRule).toContain("color: var(--tooltip-text-color);");
+  });
+
+  it("indexes every card in index.html for the launcher", () => {
+    const indexDocument = parseIndexDocument();
+    const items = collectLauncherItems(indexDocument);
+
+    expect(items).toHaveLength(indexDocument.querySelectorAll(".projectList a.projectItem").length);
+    expect(items[0]).toMatchObject({ group: "My Sites", title: "Simon's Blog", host: "blog.simonsun.cc" });
+    expect(items.find((item) => item.title === "Markio")).toMatchObject({ group: "Projects", host: "Tendo33/markio" });
+  });
+
+  it("filters launcher items by every term and ranks title-prefix matches first", () => {
+    const items = [
+      { title: "arxiv2md", desc: "Arxiv 转 md", host: "Tendo33/arxiv-md", group: "Plugins" },
+      { title: "Markio", desc: "all to Markdown", host: "Tendo33/markio", group: "Projects" },
+      { title: "moodist", desc: "白噪音", host: "moodist.simonsun.cc", group: "My Sites" }
+    ];
+
+    expect(filterLauncherItems(items, "  ")).toBe(items);
+    expect(filterLauncherItems(items, "m").map((i) => i.title)).toEqual(["Markio", "moodist", "arxiv2md"]);
+    expect(filterLauncherItems(items, "plugins md").map((i) => i.title)).toEqual(["arxiv2md"]);
+    expect(filterLauncherItems(items, "白噪音").map((i) => i.title)).toEqual(["moodist"]);
+    expect(filterLauncherItems(items, "nope")).toEqual([]);
+  });
+
+  it("prepares typewriter lines without changing their text or markup", () => {
+    const line = document.createElement("p");
+    line.innerHTML = "\n  👦 <span class=\"neonText\">LLM</span> Engineer\n";
+    const before = line.textContent;
+
+    const chars = prepareTypewriter(document, line);
+
+    expect(line.textContent).toBe(before);
+    expect(line.querySelector(".neonText").textContent).toBe("LLM");
+    expect(chars.map((c) => c.textContent).join("")).toBe("👦LLMEngineer");
+    expect(chars.every((c) => c.classList.contains("tw-pending"))).toBe(true);
   });
 
   it("allows link validation to pass even when home-content.json is absent", () => {
