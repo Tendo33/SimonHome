@@ -11,7 +11,7 @@
 /* ===== Light Theme (default) ===== */
 :root {
   --svg-color: #ffffff;
-  --main-bg-color: url(../img/optimized/background-blur.webp?v=1.2.0);
+  --main-bg-color: url(../img/optimized/background-blur.webp?v=1.2.1);
   --page-bg-color: #3d8fc4;
   --main-text-color: #eeeeee;
   --gradient: linear-gradient(120deg, #bd34fe, #e0321b 30%, #41d1ff 60%);

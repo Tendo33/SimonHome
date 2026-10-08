@@ -1,21 +1,21 @@
 /* ===== Font Faces ===== */
 @font-face {
   font-family: "Ubuntu";
-  src: url(../fonts/Ubuntu-Regular.woff2?v=1.2.0) format("woff2");
+  src: url(../fonts/Ubuntu-Regular.woff2?v=1.2.1) format("woff2");
   font-weight: 400;
   font-display: swap;
 }
 
 @font-face {
   font-family: "Ubuntu";
-  src: url(../fonts/Ubuntu-Bold.woff2?v=1.2.0) format("woff2");
+  src: url(../fonts/Ubuntu-Bold.woff2?v=1.2.1) format("woff2");
   font-weight: 700;
   font-display: swap;
 }
 
 @font-face {
   font-family: "Pacifico";
-  src: url(../fonts/Pacifico-Regular.woff2?v=1.2.0) format("woff2");
+  src: url(../fonts/Pacifico-Regular.woff2?v=1.2.1) format("woff2");
   font-display: swap;
 }
 
@@ -1094,19 +1094,19 @@ header .tanChiShe {
   --rise: 4;
 }
 
-.js .scroll-rise {
+.reveal-ready .scroll-rise {
   opacity: 0;
   transform: translateY(18px);
   transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
-.js .scroll-rise.is-visible {
+.reveal-ready .scroll-rise.is-visible {
   opacity: 1;
   transform: none;
 }
 
 /* cards follow their section in a short cascade; "backwards" so hover transforms still apply afterwards */
-.js .scroll-rise.is-visible .projectItem {
+.reveal-ready .scroll-rise.is-visible .projectItem {
   animation: riseIn 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) backwards;
   animation-delay: calc(min(var(--i, 0), 11) * 35ms + 80ms);
 }
@@ -1540,7 +1540,7 @@ header .tanChiShe {
     translate: none;
   }
 
-  .js .scroll-rise {
+  .reveal-ready .scroll-rise {
     opacity: 1;
     transform: none;
   }

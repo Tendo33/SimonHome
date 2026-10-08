@@ -500,6 +500,9 @@ function setupScrollReveal(windowObj, document) {
     return;
   }
 
+  // Sections are hidden only from here on, so a stale or failed app.js never leaves them invisible.
+  document.documentElement.classList.add("reveal-ready");
+
   const observer = new windowObj.IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {

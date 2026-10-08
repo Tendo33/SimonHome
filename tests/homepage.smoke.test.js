@@ -152,17 +152,22 @@ describe("homepage smoke behavior", () => {
     )?.[1];
     const cssBackground = rootCss.match(/--main-bg-color:\s*url\(([^)]+background[^)]*\.webp[^)]*)\);/)?.[1];
 
-    expect(preloadHref).toBe("./static/img/optimized/background-blur.webp?v=1.2.0");
-    expect(cssBackground).toBe("../img/optimized/background-blur.webp?v=1.2.0");
+    expect(preloadHref).toBe("./static/img/optimized/background-blur.webp?v=1.2.1");
+    expect(cssBackground).toBe("../img/optimized/background-blur.webp?v=1.2.1");
   });
 
   it("uses the package version for every cache-busted asset reference", () => {
     const pkg = JSON.parse(readFileSync(path.join(process.cwd(), "package.json"), "utf8"));
-    const refs = [readIndexHtml(), readStyleCss(), readFileSync(path.join(process.cwd(), "static/css/root.css"), "utf8")]
+    const scriptJs = readFileSync(path.join(process.cwd(), "static/js/script.js"), "utf8");
+    const refs = [readIndexHtml(), readStyleCss(), readFileSync(path.join(process.cwd(), "static/css/root.css"), "utf8"), scriptJs]
       .flatMap((text) => [...text.matchAll(/\?v=([\d.]+)/g)].map((m) => m[1]));
 
     expect(refs.length).toBeGreaterThan(0);
     expect(new Set(refs)).toEqual(new Set([pkg.version]));
+    // /static/ is cached immutably, so an unversioned module import would keep serving a stale file.
+    const imports = [...scriptJs.matchAll(/from "(\.\/[^"]+)"/g)].map((m) => m[1]);
+    expect(imports.length).toBeGreaterThan(0);
+    imports.forEach((spec) => expect(spec).toMatch(/\?v=/));
   });
 
   it("preloads the same woff2 fonts the stylesheet declares", () => {
