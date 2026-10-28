@@ -7,7 +7,7 @@
     "test": "vitest run --environment jsdom",
     "test:watch": "vitest --environment jsdom",
     "smoke": "vitest run tests/homepage.smoke.test.js --environment jsdom",
-    "validate:html": "html-validate index.html",
+    "validate:html": "html-validate index.html 404.html",
     "validate:links": "node scripts/validate-links.mjs",
     "validate": "npm run test && npm run validate:html && npm run validate:links",
     "optimize:images": "node scripts/optimize-images.mjs"
