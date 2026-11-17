@@ -64,30 +64,29 @@ npm run validate
 
 ## Docker 部署
 
-### 构建镜像
+镜像由 CI 构建并推到 `ghcr.io/tendo33/simonhome`（`linux/amd64`、`linux/arm64`），服务器只拉镜像：
 
 ```bash
-docker build -t simon-home-nginx .
+docker compose pull && docker compose up -d
 ```
 
-### 启动容器
+固定或回滚版本时指定标签，例如 `IMAGE_TAG=sha-abc1234 docker compose up -d`。
+
+镜像只包含运行所需的 `index.html`、`static/` 和 `nginx.conf`，不会把历史文件、文档和开发依赖一起打包进去。本地要自己构建时：
 
 ```bash
-docker run -d -p 80:80 simon-home-nginx
+docker compose -f docker-compose.yml -f docker-compose.build.yml up -d --build
 ```
 
-镜像只包含运行所需的 `index.html`、`static/` 和 `nginx.conf`，不会把历史文件、文档和开发依赖一起打包进去。
+## CI 与发布
 
-## 发布流程
+| 触发 | workflow | 做什么 |
+|---|---|---|
+| PR | `ci.yml`、`image.yml` | 执行 `npm run validate`，并试构建镜像（不推送） |
+| 推 `main` | `image.yml` | 校验通过后推送 `sha-<7 位>` 和 `latest` |
+| 推 `v*` 标签 | `image.yml`、`release.yml` | 校验通过后推送 `<版本>`、`<主>.<次>`，并创建 GitHub Release |
 
-当推送符合 `v*` 规则的 tag 时，GitHub Actions 会按顺序执行：
-
-1. 安装 Node.js 依赖
-2. 执行 `npm run validate`
-3. 创建 GitHub Release
-4. 构建并推送 Docker 镜像
-
-如果校验失败，发布和镜像推送都会被拦截。
+校验失败时不会推镜像，也不会发 Release。
 
 ## 许可证
 
