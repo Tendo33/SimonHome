@@ -75,6 +75,23 @@ const tasks = [
     height: 96,
     fit: "cover",
     options: { quality: 78 }
+  },
+  {
+    // Cards render at 52px; 128 covers 2x displays without shipping a 1932px source.
+    input: "static/img/services/apimux.png",
+    output: "static/img/optimized/services/apimux-card.webp",
+    width: 128,
+    height: 128,
+    fit: "contain",
+    options: { quality: 82 }
+  },
+  {
+    input: "static/img/services/c2a.png",
+    output: "static/img/optimized/services/c2a-card.webp",
+    width: 128,
+    height: 128,
+    fit: "contain",
+    options: { quality: 82 }
   }
 ];
 

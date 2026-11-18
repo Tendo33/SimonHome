@@ -1,0 +1,35 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "side-tab",
+        "value": "*",
+        "files": [
+          "static/css/style.css"
+        ],
+        "createdAt": "2026-11-18T04:59:22.575Z",
+        "reason": "Functional keyboard navigation indicator in launcher search results - follows macOS Spotlight pattern, paired with aria-selected for accessibility"
+      },
+      {
+        "rule": "side-tab",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-11-18T04:59:24.009Z",
+        "reason": "False positive - no side-tab borders present, selection indicator is in external CSS"
+      },
+      {
+        "rule": "dark-glow",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-11-18T05:03:19.804Z",
+        "reason": "Intentional brand design - blue glow matches site theme (blue glass gradient), user confirmed to keep, enhances readability on blurred background, controlled opacity (15%)"
+      }
+    ]
+  }
+}

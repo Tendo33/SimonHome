@@ -11,25 +11,25 @@
 /* ===== Light Theme (default) ===== */
 :root {
   --svg-color: #ffffff;
-  --main-bg-color: url(../img/optimized/background-blur.webp?v=1.2.1);
+  --main-bg-color: url(../img/optimized/background-blur.webp?v=1.3.0);
   --page-bg-color: #3d8fc4;
-  --main-text-color: #eeeeee;
+  --main-text-color: #ffffff;
   --gradient: linear-gradient(120deg, #bd34fe, #e0321b 30%, #41d1ff 60%);
   --purple-text-color: #5965ff;
   --text-bg-color: #0d263a;
   --text-glow-color: rgb(72 93 255 / 72%);
   --tooltip-bg-color: #0c2336;
   --tooltip-text-color: #f7fbff;
-  --item-bg-color: rgb(6 18 30 / 38%);
+  --item-bg-color: rgba(6, 18, 30, 0.42);
   --item-hover-color: rgb(20 36 52 / 68%);
   --item-left-title-color: #ffffff;
-  --item-left-text-color: #ffffffcc;
+  --item-left-text-color: #f0f0f0;
   --footer-text-color: #ffffff;
   --left-tag-item: rgb(27 42 57 / 20%);
   --panel-bg-color: rgba(248, 250, 252, 0.96);
-  --card-border-color: rgba(255, 255, 255, 0.12);
+  --card-border-color: rgba(255, 255, 255, 0.15);
   --shadow-strong: 0 24px 48px rgba(8, 15, 25, 0.22);
-  --back-filter-color: #00000030;
+  --back-filter-color: #0000004a;
   --spot-1: rgb(255 255 255 / 75%);
   --spot-2: rgb(255 255 255 / 16%);
   --spot-fill: rgb(255 255 255 / 6%);
@@ -47,8 +47,8 @@
 /* ===== Dark Theme ===== */
 html[data-theme="Dark"] {
   --svg-color: #ffffff;
-  --main-bg-color: #0a0a0f;
-  --page-bg-color: #0a0a0f;
+  --main-bg-color: #0e1117;
+  --page-bg-color: #0e1117;
   --main-text-color: #e8e8e8;
   --gradient: linear-gradient(120deg, rgb(133, 62, 255), #f76cc6 30%, rgb(255, 255, 255) 60%);
   --purple-text-color: #747bff;
@@ -56,8 +56,8 @@ html[data-theme="Dark"] {
   --text-glow-color: rgb(116 123 255 / 76%);
   --tooltip-bg-color: rgb(238 243 248 / 96%);
   --tooltip-text-color: #111827;
-  --item-bg-color: rgb(19, 20, 24);
-  --item-hover-color: rgb(30, 33, 38);
+  --item-bg-color: rgba(22, 27, 34, 0.75);
+  --item-hover-color: rgba(35, 42, 52, 0.85);
   --item-left-title-color: rgb(255, 255, 255);
   --item-left-text-color: rgb(160, 160, 160);
   --footer-text-color: #888888;

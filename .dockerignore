@@ -11,3 +11,20 @@ yarn-debug.log*
 yarn-error.log*
 .env
 .env*
+
+# 图片优化流程的输入源图：运行时只用 static/img/optimized/ 下的产物。
+# 保留在仓库里供 npm run optimize:images 使用，但不进镜像（约 12MB）。
+static/img/background.png
+static/img/logo.png
+static/img/services/mynebula.png
+static/img/services/ideago.png
+static/img/services/variagen.png
+static/img/services/filecodebox.png
+static/img/services/apimux.png
+static/img/services/c2a.png
+static/img/plugins/zhihu-md.png
+
+# 早期模板遗留、任何页面都不引用
+static/img/services/Gemini.png
+static/img/services/Humanizeit.png
+static/img/services/Velaunch.png

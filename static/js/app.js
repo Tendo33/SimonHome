@@ -24,7 +24,26 @@ export function ensureToast(document) {
   return toast;
 }
 
+// Toast queue to handle multiple messages
+const toastQueue = [];
+let isShowingToast = false;
+
 export function showToast(document, message) {
+  toastQueue.push(message);
+
+  if (!isShowingToast) {
+    showNextToast(document);
+  }
+}
+
+function showNextToast(document) {
+  if (toastQueue.length === 0) {
+    isShowingToast = false;
+    return;
+  }
+
+  isShowingToast = true;
+  const message = toastQueue.shift();
   const toast = ensureToast(document);
   const label = toast.querySelector("span");
 
@@ -40,9 +59,9 @@ export function showToast(document, message) {
 
   toast.hideTimeoutId = window.setTimeout(() => {
     toast.classList.remove("show");
+    // Show next message after animation completes
+    setTimeout(() => showNextToast(document), 300);
   }, 3000);
-
-  return toast;
 }
 
 export function createPopupController({
@@ -283,10 +302,25 @@ function setupTheme(windowObj, document) {
     saveTheme(windowObj, theme);
 
     if (tanChiShe) {
-      tanChiShe.src =
+      const snakeSrc =
         "https://raw.githubusercontent.com/Tendo33/Tendo33/output/github-snake" +
         (theme === "Dark" ? "-dark" : "") +
         ".svg";
+
+      // Load with fallback to handle network failures
+      const img = new Image();
+      img.onload = () => {
+        tanChiShe.src = snakeSrc;
+      };
+      img.onerror = () => {
+        // Hide the container if image fails to load
+        const container = tanChiShe.closest('.tanChiShe');
+        if (container) {
+          container.style.display = 'none';
+        }
+        console.warn("GitHub snake animation failed to load");
+      };
+      img.src = snakeSrc;
     }
 
     if (metaTheme) {
@@ -566,11 +600,16 @@ function setupTypewriter(windowObj, document, startAfter) {
   caret.className = "tw-caret";
   caret.setAttribute("aria-hidden", "true");
 
+  let timerId = null;
+  let stopped = false;
+
   startAfter.then(() => {
     let lineIndex = 0;
     let charIndex = 0;
 
     const step = () => {
+      if (stopped) return;
+
       const current = queue[lineIndex];
 
       if (!current) {
@@ -583,18 +622,26 @@ function setupTypewriter(windowObj, document, startAfter) {
       if (!char) {
         lineIndex += 1;
         charIndex = 0;
-        windowObj.setTimeout(step, 260);
+        timerId = windowObj.setTimeout(step, 260);
         return;
       }
 
       char.classList.remove("tw-pending");
       char.after(caret);
       charIndex += 1;
-      windowObj.setTimeout(step, char.textContent === " " ? 30 : 55);
+      timerId = windowObj.setTimeout(step, char.textContent === " " ? 30 : 55);
     };
 
-    windowObj.setTimeout(step, 350);
+    timerId = windowObj.setTimeout(step, 350);
   });
+
+  // Return cleanup function
+  return () => {
+    stopped = true;
+    if (timerId) {
+      windowObj.clearTimeout(timerId);
+    }
+  };
 }
 
 /* ===== Launcher (⌘K / "/") ===== */
@@ -758,7 +805,16 @@ function setupLauncher(windowObj, document) {
     input.focus();
   }
 
-  input.addEventListener("input", render);
+  // Debounce function to improve search performance
+  function debounce(fn, delay) {
+    let timer = null;
+    return function(...args) {
+      clearTimeout(timer);
+      timer = setTimeout(() => fn.apply(this, args), delay);
+    };
+  }
+
+  input.addEventListener("input", debounce(render, 150));
 
   input.addEventListener("keydown", (event) => {
     if (event.isComposing) {

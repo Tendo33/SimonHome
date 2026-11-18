@@ -12,19 +12,21 @@
 	<meta name="theme-color" content="#4a7dbd" />
 	<meta name="robots" content="index, follow" />
 	<meta name="author" content="SimonSun" />
+	<meta http-equiv="Content-Security-Policy"
+		content="default-src 'self'; script-src 'self' 'unsafe-inline' https://sdk.51.la https://raw.githubusercontent.com; img-src 'self' https: data:; style-src 'self' 'unsafe-inline'; font-src 'self'; connect-src 'self' https://sdk.51.la;" />
 
 	<!-- Open Graph -->
 	<meta property="og:title" content="SimonHome - SimonSun's Personal Homepage" />
 	<meta property="og:description" content="LLM Engineer | Open Source Enthusiast | Stay hungry, Stay foolish." />
 	<meta property="og:type" content="website" />
 	<meta property="og:url" content="https://simonsun.cc/" />
-	<meta property="og:image" content="https://simonsun.cc/static/img/optimized/og-logo.png?v=1.2.1" />
+	<meta property="og:image" content="https://simonsun.cc/static/img/optimized/og-logo.png?v=1.3.0" />
 
 	<!-- Twitter Card -->
 	<meta name="twitter:card" content="summary" />
 	<meta name="twitter:title" content="SimonHome - SimonSun's Personal Homepage" />
 	<meta name="twitter:description" content="LLM Engineer | Open Source Enthusiast | Stay hungry, Stay foolish." />
-	<meta name="twitter:image" content="https://simonsun.cc/static/img/optimized/og-logo.png?v=1.2.1" />
+	<meta name="twitter:image" content="https://simonsun.cc/static/img/optimized/og-logo.png?v=1.3.0" />
 
 	<!-- Preconnect external domains -->
 	<link rel="preconnect" href="https://skillicons.dev" crossorigin />
@@ -54,10 +56,10 @@
 	</noscript>
 
 	<!-- Preload critical assets -->
-	<link rel="preload" href="./static/fonts/Ubuntu-Regular.woff2?v=1.2.1" as="font" type="font/woff2" crossorigin />
-	<link rel="preload" href="./static/fonts/Ubuntu-Bold.woff2?v=1.2.1" as="font" type="font/woff2" crossorigin />
-	<link rel="preload" href="./static/fonts/Pacifico-Regular.woff2?v=1.2.1" as="font" type="font/woff2" crossorigin />
-	<link rel="preload" href="./static/img/optimized/background-blur.webp?v=1.2.1" as="image" />
+	<link rel="preload" href="./static/fonts/Ubuntu-Regular.woff2?v=1.3.0" as="font" type="font/woff2" crossorigin />
+	<link rel="preload" href="./static/fonts/Ubuntu-Bold.woff2?v=1.3.0" as="font" type="font/woff2" crossorigin />
+	<link rel="preload" href="./static/fonts/Pacifico-Regular.woff2?v=1.3.0" as="font" type="font/woff2" crossorigin />
+	<link rel="preload" href="./static/img/optimized/background-blur.webp?v=1.3.0" as="image" />
 
 	<!-- Canonical URL -->
 	<link rel="canonical" href="https://simonsun.cc/" />
@@ -81,8 +83,8 @@
 	}
 	</script>
 
-	<link rel="stylesheet" href="./static/css/style.css?v=1.2.1" />
-	<link rel="stylesheet" href="./static/css/root.css?v=1.2.1" />
+	<link rel="stylesheet" href="./static/css/style.css?v=1.3.0" />
+	<link rel="stylesheet" href="./static/css/root.css?v=1.3.0" />
 </head>
 
 <body>
@@ -96,7 +98,8 @@
 	<div class="simon-filter" aria-hidden="true"></div>
 
 	<!-- Mobile Menu Button -->
-	<button class="mobile-menu-btn" type="button" aria-label="Open sidebar menu" aria-expanded="false" aria-controls="sidebar">
+	<button class="mobile-menu-btn" type="button" aria-label="Open sidebar menu" aria-expanded="false"
+		aria-controls="sidebar">
 		<span></span>
 		<span></span>
 		<span></span>
@@ -106,7 +109,8 @@
 
 	<div class="simon-main">
 		<aside id="sidebar" class="simon-left" aria-label="Personal information sidebar">
-			<img class="logo" src="./static/img/optimized/logo.webp?v=1.2.1" alt="SimonSun's avatar" width="480" height="480" loading="eager" decoding="async" fetchpriority="high" />
+			<img class="logo" src="./static/img/optimized/logo.webp?v=1.3.0" alt="SimonSun's avatar" width="480" height="480"
+				loading="eager" decoding="async" fetchpriority="high" />
 			<div class="left-div left-des">
 				<div class="left-des-item">
 					<svg aria-hidden="true" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
@@ -203,7 +207,8 @@
 		</aside>
 		<main id="main-content" class="simon-right">
 			<header>
-				<img class="index-logo" src="./static/img/optimized/logo.webp?v=1.2.1" alt="SimonSun's avatar" width="480" height="480" loading="eager" decoding="async" fetchpriority="high" />
+				<img class="index-logo" src="./static/img/optimized/logo.webp?v=1.3.0" alt="SimonSun's avatar" width="480" height="480"
+					loading="eager" decoding="async" fetchpriority="high" />
 				<h1 class="welcome hero-rise">
 					Hello I'm <span class="gradientText"> SimonSun </span>
 				</h1>
@@ -232,7 +237,8 @@
 							</path>
 						</svg>
 						<span class="iconTip">Mail</span>
-					</button><button class="iconItem" type="button" aria-label="Sponsor via WeChat" data-preview-image="/static/img/wxzsm.jpg">
+					</button><button class="iconItem" type="button" aria-label="Sponsor via WeChat"
+						data-preview-image="/static/img/wxzsm.jpg">
 						<svg aria-hidden="true" viewBox="0 0 1024 1024" version="1.1"
 							xmlns="http://www.w3.org/2000/svg">
 							<path
@@ -255,8 +261,13 @@
 						</svg>
 						<span class="iconTip">QQ</span>
 					</button>
-					<button class="iconItem launcher-trigger" type="button" aria-label="快速跳转 (/ 或 ⌘K)" aria-haspopup="dialog" aria-controls="launcher">
-						<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" /></svg>
+					<button class="iconItem launcher-trigger" type="button" aria-label="快速跳转 (/ 或 ⌘K)" aria-haspopup="dialog"
+						aria-controls="launcher">
+						<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+							stroke-linecap="round" stroke-linejoin="round">
+							<circle cx="11" cy="11" r="7" />
+							<path d="m20 20-3.5-3.5" />
+						</svg>
 						<span class="iconTip">搜索 /</span>
 					</button>
 					<div class="switch" role="group" aria-label="Toggle theme">
@@ -273,7 +284,8 @@
 
 				<div class="tanChiShe hero-rise">
 					<img id="tanChiShe" src="https://raw.githubusercontent.com/Tendo33/Tendo33/output/github-snake.svg"
-						alt="GitHub contribution snake animation" loading="lazy" decoding="async" crossorigin="anonymous" />
+						alt="GitHub contribution snake animation" loading="lazy" decoding="async"
+						crossorigin="anonymous" />
 				</div>
 			</header>
 
@@ -282,19 +294,21 @@
 					<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
 						viewBox="0 0 24 24">
 						<path fill-rule="evenodd"
-							d="M4 4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H4Zm16 7H4v7h16v-7ZM5 8a1 1 0 0 1 1-1h.01a1 1 0 0 1 0 2H6a1 1 0 0 1-1-1Zm4-1a1 1 0 0 0 0 2h.01a1 1 0 0 0 0-2H9Zm2 1a1 1 0 0 1 1-1h.01a1 1 0 1 1 0 2H12a1 1 0 0 1-1-1Z"
+							d="M4 5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H4Zm0 6h16v6H4v-6Z"
 							clip-rule="evenodd" />
+						<path d="M5 14h6v3H5v-3Zm7.5 0h2.5v3h-2.5v-3Zm4.5 0h2v3H17v-3Z" />
 					</svg>
-					<span>My Sites</span>
+					<span>Personal Sites</span>
 				</h2>
-				<div id="sites-list" class="projectList">
+				<div id="personal-sites-list" class="projectList">
 					<a class="projectItem site-card" target="_blank" rel="noopener noreferrer" href="https://blog.simonsun.cc/">
 						<div class="projectItemLeft">
 							<h3>Simon's Blog</h3>
 							<p>欢迎来到我的博客👨‍💻</p>
 						</div>
 						<div class="projectItemRight">
-							<img src="./static/img/services/blog.png" alt="Blog icon" loading="lazy" decoding="async" width="96" height="96" />
+							<img src="./static/img/services/blog.png" alt="Simon's Blog icon" loading="lazy" decoding="async" width="96"
+								height="96" />
 						</div>
 					</a>
 					<a class="projectItem site-card" target="_blank" rel="noopener noreferrer" href="https://simonzz.simonsun.cc/">
@@ -303,7 +317,8 @@
 							<p>记录下感情生活💓</p>
 						</div>
 						<div class="projectItemRight">
-							<img src="./static/img/services/simonzz.svg" alt="SimonZZ icon" loading="lazy" decoding="async" width="96" height="96" />
+							<img src="./static/img/services/simonzz.svg" alt="SimonZZ's website icon" loading="lazy" decoding="async" width="96"
+								height="96" />
 						</div>
 					</a>
 					<a class="projectItem site-card" target="_blank" rel="noopener noreferrer" href="https://star.simonsun.cc/graph">
@@ -312,52 +327,17 @@
 							<p>我的 github star 星空图✨</p>
 						</div>
 						<div class="projectItemRight">
-							<img src="./static/img/optimized/services/mynebula-card.webp" alt="MyNebula icon" loading="lazy" decoding="async" width="96" height="96" />
+							<img src="./static/img/optimized/services/mynebula-card.webp" alt="Simon's Star icon" loading="lazy" decoding="async"
+								width="96" height="96" />
 						</div>
 					</a>
-					<a class="projectItem site-card" target="_blank" rel="noopener noreferrer" href="https://ideago.cc/">
+					<a class="projectItem site-card" target="_blank" rel="noopener noreferrer" href="https://apimux.cc/">
 						<div class="projectItemLeft">
-							<h3>IdeaGo</h3>
-							<p>查找竞品，用来打消我的一些想法💡</p>
+							<h3>ApiMux</h3>
+							<p>API 聚合服务🔌</p>
 						</div>
 						<div class="projectItemRight">
-							<img src="./static/img/optimized/services/ideago-card.webp" alt="IdeaGo icon" loading="lazy" decoding="async" width="96" height="96" />
-						</div>
-					</a>
-					<a class="projectItem site-card" target="_blank" rel="noopener noreferrer" href="https://moodshaker.de/">
-						<div class="projectItemLeft">
-							<h3>moodshaker</h3>
-							<p>不知道喝啥的时候调杯酒🍸</p>
-						</div>
-						<div class="projectItemRight">
-							<img src="./static/img/services/moodshaker.ico" alt="moodshaker icon" loading="lazy" decoding="async" width="96" height="96" />
-						</div>
-					</a>
-					<a class="projectItem site-card" target="_blank" rel="noopener noreferrer" href="https://variangen.simonsun.cc/">
-						<div class="projectItemLeft">
-							<h3>variagen</h3>
-							<p>自用的一些生图工作流🎨</p>
-						</div>
-						<div class="projectItemRight">
-							<img src="./static/img/optimized/services/variagen-card.webp" alt="variagen icon" loading="lazy" decoding="async" width="96" height="96" />
-						</div>
-					</a>
-					<a class="projectItem site-card" target="_blank" rel="noopener noreferrer" href="https://filebox.simonsun.cc/">
-						<div class="projectItemLeft">
-							<h3>filecodebox</h3>
-							<p>自建的文件分享🎉</p>
-						</div>
-						<div class="projectItemRight">
-							<img src="./static/img/optimized/services/filecodebox-card.webp" alt="filecodebox icon" loading="lazy" decoding="async" width="96" height="96" />
-						</div>
-					</a>
-					<a class="projectItem site-card" target="_blank" rel="noopener noreferrer" href="https://moontv.simonsun.cc/">
-						<div class="projectItemLeft">
-							<h3>moontv</h3>
-							<p>视频源聚合器，用来看电影🎬</p>
-						</div>
-						<div class="projectItemRight">
-							<img src="./static/img/services/moontv.ico" alt="moontv icon" loading="lazy" decoding="async" width="96" height="96" />
+							<img src="./static/img/optimized/services/apimux-card.webp" alt="ApiMux icon" loading="lazy" decoding="async" width="96" height="96" />
 						</div>
 					</a>
 					<a class="projectItem site-card" target="_blank" rel="noopener noreferrer" href="https://kunma.simonsun.cc/dashboard">
@@ -366,25 +346,71 @@
 							<p>检测我的网站状态🍎</p>
 						</div>
 						<div class="projectItemRight">
-							<img src="./static/img/services/uptime-kuma.svg" alt="uptime-kuma icon" loading="lazy" decoding="async" width="96" height="96" />
+							<img src="./static/img/services/uptime-kuma.svg" alt="uptime-kuma icon" loading="lazy" decoding="async" width="96"
+								height="96" />
 						</div>
 					</a>
-					<a class="projectItem site-card" target="_blank" rel="noopener noreferrer" href="https://newsnow.simonsun.cc/">
+				</div>
+				</section>
+
+				<section class="scroll-rise" aria-labelledby="tools-title">
+					<h2 id="tools-title" class="title">
+						<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+							viewBox="0 0 24 24">
+							<path
+								d="M17.133 12.632v-1.8a5.406 5.406 0 0 0-4.154-5.262.955.955 0 0 0 .021-.106V3.1a1 1 0 0 0-2 0v2.364a.955.955 0 0 0 .021.106 5.406 5.406 0 0 0-4.154 5.262v1.8C6.867 15.018 5 15.614 5 16.807 5 17.4 5 18 5.538 18h12.924C19 18 19 17.4 19 16.807c0-1.193-1.867-1.789-1.867-4.175ZM8.823 19a3.453 3.453 0 0 0 6.354 0H8.823Z" />
+						</svg>
+						<span>Tools &amp; Services</span>
+					</h2>
+					<div id="tools-list" class="projectList">
+						<a class="projectItem site-card" target="_blank" rel="noopener noreferrer" href="https://ideago.cc/">
+							<div class="projectItemLeft">
+								<h3>IdeaGo</h3>
+								<p>查找竞品，用来打消我的一些想法💡</p>
+							</div>
+							<div class="projectItemRight">
+								<img src="./static/img/optimized/services/ideago-card.webp" alt="IdeaGo icon" loading="lazy"
+									decoding="async" width="96" height="96" />
+							</div>
+						</a>
+						<a class="projectItem site-card" target="_blank" rel="noopener noreferrer" href="https://variagen.simonsun.cc/">
 						<div class="projectItemLeft">
-							<h3>newsnow</h3>
-							<p>热榜聚合器，每天早上看两眼🔥</p>
+							<h3>variagen</h3>
+							<p>自用的一些生图工作流🎨</p>
 						</div>
 						<div class="projectItemRight">
-							<img src="./static/img/services/newsnow.svg" alt="newsnow icon" loading="lazy" decoding="async" width="96" height="96" />
+							<img src="./static/img/optimized/services/variagen-card.webp" alt="variagen icon" loading="lazy" decoding="async"
+								width="96" height="96" />
 						</div>
 					</a>
-					<a class="projectItem site-card" target="_blank" rel="noopener noreferrer" href="https://moodist.simonsun.cc/">
+					<a class="projectItem site-card" target="_blank" rel="noopener noreferrer" href="https://filebox.simonsun.cc/">
 						<div class="projectItemLeft">
-							<h3>moodist</h3>
-							<p>可以融合的白噪音🎵</p>
+							<h3>filecodebox</h3>
+							<p>自建的文件分享🎉</p>
 						</div>
 						<div class="projectItemRight">
-							<img src="./static/img/services/moodist.svg" alt="moodist icon" loading="lazy" decoding="async" width="96" height="96" />
+							<img src="./static/img/optimized/services/filecodebox-card.webp" alt="filecodebox icon" loading="lazy" decoding="async"
+								width="96" height="96" />
+						</div>
+					</a>
+					<a class="projectItem site-card" target="_blank" rel="noopener noreferrer" href="https://c2a.simonsun.cc/">
+						<div class="projectItemLeft">
+							<h3>C2A</h3>
+							<p>Convert to Anything 转换工具🔄</p>
+						</div>
+						<div class="projectItemRight">
+							<img src="./static/img/optimized/services/c2a-card.webp" alt="C2A icon" loading="lazy" decoding="async" width="96"
+								height="96" />
+						</div>
+					</a>
+					<a class="projectItem site-card" target="_blank" rel="noopener noreferrer" href="https://canvas.simonsun.cc/">
+						<div class="projectItemLeft">
+							<h3>Canvas</h3>
+							<p>在线画布工具🖼️</p>
+						</div>
+						<div class="projectItemRight">
+							<img src="./static/img/services/canvas.svg" alt="Canvas icon" loading="lazy" decoding="async" width="96"
+								height="96" />
 						</div>
 					</a>
 					<a class="projectItem site-card" target="_blank" rel="noopener noreferrer" href="https://draw.simonsun.cc/">
@@ -393,7 +419,61 @@
 							<p>自建的在线画板🎨</p>
 						</div>
 						<div class="projectItemRight">
-							<img src="./static/img/services/drawnix.ico" alt="drawnix icon" loading="lazy" decoding="async" width="96" height="96" />
+							<img src="./static/img/services/drawnix.ico" alt="drawnix icon" loading="lazy" decoding="async" width="96"
+								height="96" />
+						</div>
+					</a>
+					</div>
+					</section>
+
+					<section class="scroll-rise" aria-labelledby="entertainment-title">
+						<h2 id="entertainment-title" class="title">
+							<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+								viewBox="0 0 24 24">
+								<path fill-rule="evenodd"
+									d="M12 2c-.791 0-1.55.314-2.11.874l-.893.893a.985.985 0 0 1-.696.288H7.04A2.984 2.984 0 0 0 4.055 7.04v1.262a.986.986 0 0 1-.288.696l-.893.893a2.984 2.984 0 0 0 0 4.22l.893.893a.985.985 0 0 1 .288.696v1.262a2.984 2.984 0 0 0 2.984 2.984h1.262c.261 0 .512.104.696.288l.893.893a2.984 2.984 0 0 0 4.22 0l.893-.893a.985.985 0 0 1 .696-.288h1.262a2.984 2.984 0 0 0 2.984-2.984V15.7c0-.261.104-.512.288-.696l.893-.893a2.984 2.984 0 0 0 0-4.22l-.893-.893a.985.985 0 0 1-.288-.696V7.04a2.984 2.984 0 0 0-2.984-2.984h-1.262a.985.985 0 0 1-.696-.288l-.893-.893A2.984 2.984 0 0 0 12 2Zm3.683 7.73a1 1 0 1 0-1.414-1.413l-4.253 4.253-1.277-1.277a1 1 0 0 0-1.415 1.414l1.985 1.984a1 1 0 0 0 1.414 0l4.96-4.96Z"
+									clip-rule="evenodd" />
+							</svg>
+							<span>Entertainment &amp; Life</span>
+						</h2>
+						<div id="entertainment-list" class="projectList">
+							<a class="projectItem site-card" target="_blank" rel="noopener noreferrer" href="https://moodshaker.de/">
+						<div class="projectItemLeft">
+							<h3>moodshaker</h3>
+							<p>不知道喝啥的时候调杯酒🍸</p>
+						</div>
+						<div class="projectItemRight">
+							<img src="./static/img/services/moodshaker.ico" alt="moodshaker icon" loading="lazy" decoding="async" width="96"
+								height="96" />
+						</div>
+					</a>
+					<a class="projectItem site-card" target="_blank" rel="noopener noreferrer" href="https://tv.simonsun.cc/">
+						<div class="projectItemLeft">
+							<h3>lunatv</h3>
+							<p>视频源聚合器，用来看电影🎬</p>
+						</div>
+						<div class="projectItemRight">
+							<img src="./static/img/services/moontv.ico" alt="lunatv icon" loading="lazy" decoding="async" width="96" height="96" />
+						</div>
+					</a>
+					<a class="projectItem site-card" target="_blank" rel="noopener noreferrer" href="https://newsnow.simonsun.cc/">
+						<div class="projectItemLeft">
+							<h3>newsnow</h3>
+							<p>热榜聚合器，每天早上看两眼🔥</p>
+						</div>
+						<div class="projectItemRight">
+							<img src="./static/img/services/newsnow.svg" alt="newsnow icon" loading="lazy" decoding="async" width="96"
+								height="96" />
+						</div>
+					</a>
+					<a class="projectItem site-card" target="_blank" rel="noopener noreferrer" href="https://moodist.simonsun.cc/">
+						<div class="projectItemLeft">
+							<h3>moodist</h3>
+							<p>可以融合的白噪音🎵</p>
+						</div>
+						<div class="projectItemRight">
+							<img src="./static/img/services/moodist.svg" alt="moodist icon" loading="lazy" decoding="async" width="96"
+								height="96" />
 						</div>
 					</a>
 				</div>
@@ -418,7 +498,8 @@
 							<img src="./static/img/projects/i1.png" alt="markio icon" loading="lazy" decoding="async" width="96" height="96" />
 						</div>
 					</a>
-					<a class="projectItem project-card" target="_blank" rel="noopener noreferrer" href="https://github.com/Tendo33/SimonHome">
+					<a class="projectItem project-card" target="_blank" rel="noopener noreferrer"
+						href="https://github.com/Tendo33/SimonHome">
 						<div class="projectItemLeft">
 							<h3>SimonHome</h3>
 							<p>本网站的源码</p>
@@ -427,7 +508,8 @@
 							<img src="./static/img/projects/i2.png" alt="SimonHome icon" loading="lazy" decoding="async" width="96" height="96" />
 						</div>
 					</a>
-					<a class="projectItem project-card" target="_blank" rel="noopener noreferrer" href="https://github.com/Tendo33/data-tagger">
+					<a class="projectItem project-card" target="_blank" rel="noopener noreferrer"
+						href="https://github.com/Tendo33/data-tagger">
 						<div class="projectItemLeft">
 							<h3>data-tagger</h3>
 							<p>高效、灵活的多任务批量 SFT 数据标注工具</p>
@@ -436,7 +518,8 @@
 							<img src="./static/img/projects/i3.png" alt="data-tagger icon" loading="lazy" decoding="async" width="96" height="96" />
 						</div>
 					</a>
-					<a class="projectItem project-card" target="_blank" rel="noopener noreferrer" href="https://github.com/Tendo33/parq-cli">
+					<a class="projectItem project-card" target="_blank" rel="noopener noreferrer"
+						href="https://github.com/Tendo33/parq-cli">
 						<div class="projectItemLeft">
 							<h3>parq-cli</h3>
 							<p>Parquet 文件命令行工具</p>
@@ -454,16 +537,19 @@
 							<img src="./static/img/projects/i5.png" alt="uvm icon" loading="lazy" decoding="async" width="96" height="96" />
 						</div>
 					</a>
-					<a class="projectItem project-card" target="_blank" rel="noopener noreferrer" href="https://github.com/Tendo33/daily_ETF_analysis">
+					<a class="projectItem project-card" target="_blank" rel="noopener noreferrer"
+						href="https://github.com/Tendo33/daily_ETF_analysis">
 						<div class="projectItemLeft">
 							<h3>daily_ETF_analysis</h3>
 							<p>ETF 日度分析与跟踪</p>
 						</div>
 						<div class="projectItemRight">
-							<img src="./static/img/projects/i6.png" alt="daily ETF analysis icon" loading="lazy" decoding="async" width="96" height="96" />
+							<img src="./static/img/projects/i6.png" alt="daily ETF analysis icon" loading="lazy" decoding="async" width="96"
+								height="96" />
 						</div>
 					</a>
-					<a class="projectItem project-card" target="_blank" rel="noopener noreferrer" href="https://github.com/Tendo33/MyNebula">
+					<a class="projectItem project-card" target="_blank" rel="noopener noreferrer"
+						href="https://github.com/Tendo33/MyNebula">
 						<div class="projectItemLeft">
 							<h3>MyNebula</h3>
 							<p>把 GitHub Stars 变成语义知识星云</p>
@@ -481,13 +567,15 @@
 							<img src="./static/img/projects/i8.png" alt="IdeaGo icon" loading="lazy" decoding="async" width="96" height="96" />
 						</div>
 					</a>
-					<a class="projectItem project-card" target="_blank" rel="noopener noreferrer" href="https://github.com/Tendo33/MoodShakerFront">
+					<a class="projectItem project-card" target="_blank" rel="noopener noreferrer"
+						href="https://github.com/Tendo33/MoodShakerFront">
 						<div class="projectItemLeft">
 							<h3>MoodShakerFront</h3>
 							<p>鸡尾酒推荐网站</p>
 						</div>
 						<div class="projectItemRight">
-							<img src="./static/img/projects/i9.png" alt="MoodShakerFront icon" loading="lazy" decoding="async" width="96" height="96" />
+							<img src="./static/img/projects/i9.png" alt="MoodShakerFront icon" loading="lazy" decoding="async" width="96"
+								height="96" />
 						</div>
 					</a>
 				</div>
@@ -496,30 +584,47 @@
 			<section class="scroll-rise" aria-labelledby="plugins-title">
 				<h2 id="plugins-title" class="title">
 					<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-						<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m8 8-4 4 4 4m8 0 4-4-4-4m-2-3-4 14" />
+						<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+							d="m8 8-4 4 4 4m8 0 4-4-4-4m-2-3-4 14" />
 					</svg>
 					<span>Plugins</span>
 				</h2>
 				<div id="plugins-list" class="projectList">
-					<a class="projectItem project-card" target="_blank" rel="noopener noreferrer" href="https://github.com/Tendo33/zhihu-md">
+					<a class="projectItem project-card" target="_blank" rel="noopener noreferrer"
+						href="https://github.com/Tendo33/zhihu-md">
 						<div class="projectItemLeft">
 							<h3>zhihu2md</h3>
 							<p>将知乎转换为 md 的浏览器插件📚</p>
 						</div>
 						<div class="projectItemRight">
-							<img src="./static/img/optimized/plugins/zhihu-md-card.webp" alt="zhihu-md icon" loading="lazy" decoding="async" width="96" height="96" />
+							<img src="./static/img/optimized/plugins/zhihu-md-card.webp" alt="zhihu-md icon" loading="lazy" decoding="async"
+								width="96" height="96" />
 						</div>
 					</a>
-					<a class="projectItem project-card" target="_blank" rel="noopener noreferrer" href="https://github.com/Tendo33/arxiv-md">
+					<a class="projectItem project-card" target="_blank" rel="noopener noreferrer"
+						href="https://github.com/Tendo33/arxiv-md">
 						<div class="projectItemLeft">
 							<h3>arxiv2md</h3>
 							<p>将 Arxiv 转换为 md 的浏览器插件📚</p>
 						</div>
 						<div class="projectItemRight">
-							<img src="./static/img/plugins/arxiv-md.png" alt="arxiv-md icon" loading="lazy" decoding="async" width="96" height="96" />
+							<img src="./static/img/plugins/arxiv-md.png" alt="arxiv-md icon" loading="lazy" decoding="async" width="96"
+								height="96" />
 						</div>
 					</a>
-					<a class="projectItem project-card" target="_blank" rel="noopener noreferrer" href="https://github.com/Tendo33/cursor-usage-tracker">
+							<a class="projectItem project-card" target="_blank" rel="noopener noreferrer"
+								href="https://github.com/Tendo33/journal2md">
+								<div class="projectItemLeft">
+									<h3>journal2md</h3>
+									<p>将期刊文章转换为 Markdown 的浏览器插件📄</p>
+									</div>
+									<div class="projectItemRight">
+									<img src="./static/img/plugins/journal2md.svg" alt="journal2md icon" loading="lazy" decoding="async" width="96"
+										height="96" />
+						</div>
+					</a>
+					<a class="projectItem project-card" target="_blank" rel="noopener noreferrer"
+						href="https://github.com/Tendo33/cursor-usage-tracker">
 						<div class="projectItemLeft">
 							<h3>cursor-usage-tracker</h3>
 							<p>Cursor 使用情况统计的 VS Code 插件📊</p>
@@ -558,7 +663,9 @@
 		<span class="footer-hint"> | 按 <kbd>/</kbd> 快速跳转</span>
 	</footer>
 	<div id="toast-notification" role="status" aria-live="polite" aria-atomic="true">
-		<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" /></svg>
+		<svg viewBox="0 0 24 24" aria-hidden="true">
+			<path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+		</svg>
 		<span></span>
 	</div>
 	<div class="tc" role="dialog" aria-modal="true" aria-label="Image preview" hidden>
@@ -569,8 +676,14 @@
 	</div>
 	<dialog id="launcher" class="launcher" aria-label="快速跳转">
 		<div class="launcher-form" role="search">
-			<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" /></svg>
-			<input class="launcher-input" type="text" placeholder="搜站点、项目、插件…" autocomplete="off" spellcheck="false" aria-label="搜索站点、项目和插件" aria-controls="launcher-results" aria-autocomplete="list" role="combobox" aria-expanded="true" />
+			<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+				stroke-linejoin="round">
+				<circle cx="11" cy="11" r="7" />
+				<path d="m20 20-3.5-3.5" />
+			</svg>
+			<input class="launcher-input" type="text" placeholder="搜站点、项目、插件…" autocomplete="off" spellcheck="false"
+				aria-label="搜索站点、项目和插件" aria-controls="launcher-results" aria-autocomplete="list" role="combobox"
+				aria-expanded="true" />
 			<kbd>esc</kbd>
 		</div>
 		<!-- Combobox + filtered listbox (ARIA APG pattern); a native <select> cannot filter as you type. -->
@@ -578,20 +691,36 @@
 		<ul id="launcher-results" class="launcher-results" role="listbox" aria-label="搜索结果"></ul>
 		<p class="launcher-foot"><span><kbd>↑</kbd> <kbd>↓</kbd> 选择</span><span><kbd>↵</kbd> 打开</span></p>
 	</dialog>
-	<script data-cfasync="false" type="module" src="./static/js/script.js?v=1.2.1"></script>
+	<script data-cfasync="false" type="module" src="./static/js/script.js?v=1.3.0"></script>
 
 	<script>
 		(function () {
-			var s = document.createElement("script");
-			s.charset = "UTF-8";
-			s.src = "//sdk.51.la/js-sdk-pro.min.js";
-			s.async = true;
-			s.onload = function () {
-				if (typeof LA !== "undefined") {
-					LA.init({ id: "KFqltKSkJgQTGD9l", ck: "KFqltKSkJgQTGD9l" });
-				}
-			};
-			document.body.appendChild(s);
+			function loadAnalytics() {
+				var s = document.createElement("script");
+				s.charset = "UTF-8";
+				s.src = "https://sdk.51.la/js-sdk-pro.min.js";
+				s.async = true;
+				s.onerror = function () {
+					console.warn("Analytics script failed to load");
+				};
+				s.onload = function () {
+					try {
+						if (typeof LA !== "undefined") {
+							LA.init({ id: "KFqltKSkJgQTGD9l", ck: "KFqltKSkJgQTGD9l" });
+						}
+					} catch (e) {
+						console.warn("Analytics initialization failed", e);
+					}
+				};
+				document.body.appendChild(s);
+			}
+
+			// Delay analytics loading to improve initial page load
+			if ('requestIdleCallback' in window) {
+				requestIdleCallback(loadAnalytics, { timeout: 2000 });
+			} else {
+				setTimeout(loadAnalytics, 2000);
+			}
 		})();
 	</script>
 </body>

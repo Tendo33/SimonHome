@@ -1,4 +1,4 @@
-import { initHomePage } from "./app.js?v=1.2.1";
+import { initHomePage } from "./app.js?v=1.3.0";
 
 console.log(
   `%cCopyright © ${new Date().getFullYear()} simonsun.cc`,

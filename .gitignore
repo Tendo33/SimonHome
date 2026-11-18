@@ -37,3 +37,6 @@ next-env.d.ts
 .history
 .env
 .worktrees/
+
+# impeccable hook cache (machine-specific absolute paths)
+.impeccable/hook.cache.json

@@ -85,10 +85,12 @@ describe("homepage smoke behavior", () => {
   it("keeps sites, projects, and plugins cards directly in index.html", () => {
     const indexDocument = parseIndexDocument();
 
-    expect(indexDocument.querySelectorAll("#sites-list .projectItem.site-card")).not.toHaveLength(0);
+    expect(indexDocument.querySelectorAll("#personal-sites-list .projectItem.site-card")).not.toHaveLength(0);
+    expect(indexDocument.querySelectorAll("#tools-list .projectItem.site-card")).not.toHaveLength(0);
+    expect(indexDocument.querySelectorAll("#entertainment-list .projectItem.site-card")).not.toHaveLength(0);
     expect(indexDocument.querySelectorAll("#projects-list .projectItem.project-card")).not.toHaveLength(0);
     expect(indexDocument.querySelectorAll("#plugins-list .projectItem.project-card")).not.toHaveLength(0);
-    expect(indexDocument.querySelector("#sites-list h3")?.textContent).toBe("Simon's Blog");
+    expect(indexDocument.querySelector("#personal-sites-list h3")?.textContent).toBe("Simon's Blog");
     expect(indexDocument.querySelector("#projects-list h3")?.textContent).toBe("Markio");
     expect(indexDocument.querySelector("#plugins-list h3")?.textContent).toBe("zhihu2md");
   });
@@ -152,8 +154,9 @@ describe("homepage smoke behavior", () => {
     )?.[1];
     const cssBackground = rootCss.match(/--main-bg-color:\s*url\(([^)]+background[^)]*\.webp[^)]*)\);/)?.[1];
 
-    expect(preloadHref).toBe("./static/img/optimized/background-blur.webp?v=1.2.1");
-    expect(cssBackground).toBe("../img/optimized/background-blur.webp?v=1.2.1");
+    const version = JSON.parse(readFileSync(path.join(process.cwd(), "package.json"), "utf8")).version;
+    expect(preloadHref).toBe(`./static/img/optimized/background-blur.webp?v=${version}`);
+    expect(cssBackground).toBe(`../img/optimized/background-blur.webp?v=${version}`);
   });
 
   it("uses the package version for every cache-busted asset reference", () => {
@@ -206,7 +209,8 @@ describe("homepage smoke behavior", () => {
     const items = collectLauncherItems(indexDocument);
 
     expect(items).toHaveLength(indexDocument.querySelectorAll(".projectList a.projectItem").length);
-    expect(items[0]).toMatchObject({ group: "My Sites", title: "Simon's Blog", host: "blog.simonsun.cc" });
+    const firstSiteCard = items.find((item) => item.host === "blog.simonsun.cc");
+    expect(firstSiteCard).toMatchObject({ group: "Personal Sites", title: "Simon's Blog", host: "blog.simonsun.cc" });
     expect(items.find((item) => item.title === "Markio")).toMatchObject({ group: "Projects", host: "Tendo33/markio" });
   });
 
