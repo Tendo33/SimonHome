@@ -86,8 +86,16 @@ const tasks = [
     options: { quality: 82 }
   },
   {
-    input: "static/img/services/c2a.png",
-    output: "static/img/optimized/services/c2a-card.webp",
+    input: "static/img/services/canvas.png",
+    output: "static/img/optimized/services/canvas-card.webp",
+    width: 128,
+    height: 128,
+    fit: "contain",
+    options: { quality: 82 }
+  },
+  {
+    input: "static/img/services/moodshaker.png",
+    output: "static/img/optimized/services/moodshaker-card.webp",
     width: 128,
     height: 128,
     fit: "contain",

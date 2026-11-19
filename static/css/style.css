@@ -1,21 +1,21 @@
 /* ===== Font Faces ===== */
 @font-face {
   font-family: "Ubuntu";
-  src: url(../fonts/Ubuntu-Regular.woff2?v=1.3.0) format("woff2");
+  src: url(../fonts/Ubuntu-Regular.woff2?v=1.3.1) format("woff2");
   font-weight: 400;
   font-display: swap;
 }
 
 @font-face {
   font-family: "Ubuntu";
-  src: url(../fonts/Ubuntu-Bold.woff2?v=1.3.0) format("woff2");
+  src: url(../fonts/Ubuntu-Bold.woff2?v=1.3.1) format("woff2");
   font-weight: 700;
   font-display: swap;
 }
 
 @font-face {
   font-family: "Pacifico";
-  src: url(../fonts/Pacifico-Regular.woff2?v=1.3.0) format("woff2");
+  src: url(../fonts/Pacifico-Regular.woff2?v=1.3.1) format("woff2");
   font-display: swap;
 }
 
