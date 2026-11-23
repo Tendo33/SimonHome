@@ -91,6 +91,9 @@ describe("homepage smoke behavior", () => {
     expect(indexDocument.querySelectorAll("#projects-list .projectItem.project-card")).not.toHaveLength(0);
     expect(indexDocument.querySelectorAll("#plugins-list .projectItem.project-card")).not.toHaveLength(0);
     expect(indexDocument.querySelector("#personal-sites-list h3")?.textContent).toBe("Simon's Blog");
+    expect(indexDocument.querySelector('#personal-sites-list a[href="https://status.simonsun.cc"] h3')?.textContent).toBe("uptime-polaris");
+    expect(indexDocument.querySelector('#personal-sites-list a[href="https://komari.simonsun.cc/"] h3')?.textContent).toBe("Komari");
+    expect(indexDocument.querySelector('#tools-list a[href="https://status.simonsun.cc"]')).toBeNull();
     expect(indexDocument.querySelector("#projects-list h3")?.textContent).toBe("Markio");
     expect(indexDocument.querySelector("#plugins-list h3")?.textContent).toBe("zhihu2md");
   });

@@ -100,6 +100,14 @@ const tasks = [
     height: 128,
     fit: "contain",
     options: { quality: 82 }
+  },
+  {
+    input: "static/img/services/komari.png",
+    output: "static/img/optimized/services/komari-card.webp",
+    width: 128,
+    height: 128,
+    fit: "contain",
+    options: { quality: 82 }
   }
 ];
 
