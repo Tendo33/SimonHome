@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="docs/assets/logo.webp" alt="SimonHome 手绘头像" width="120">
+<img src="docs/screenshots/logo.webp" alt="SimonHome 手绘头像" width="120">
 
 # SimonHome
 
@@ -21,7 +21,7 @@
 
 <sub>中文</sub>
 
-<img src="docs/assets/background.webp" alt="站点背景：蓝天、飞鸟与山间城堡的插画" width="820">
+<img src="docs/screenshots/background.webp" alt="站点背景：蓝天、飞鸟与山间城堡的插画" width="820">
 
 </div>
 
